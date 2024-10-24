@@ -11,3 +11,11 @@ newTodoButton.addEventListener("click", () => {
     createTodoItem();
 });
 content.appendChild(newTodoButton);
+
+const newProjectButton = document.createElement("button");
+newProjectButton.textContent = "New Project";
+newProjectButton.addEventListener("click", ()=> {
+    const title = prompt("What do you want to title this project?")
+    createProject(title);
+})
+content.appendChild(newProjectButton);
