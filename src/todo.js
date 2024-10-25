@@ -11,8 +11,6 @@ class Todo_item{
     }
 }
 
-console.log(listOfProjects);
-
 function createTodoItem(){
     const todoItem = new Todo_item(
         prompt("What do you want to do?"),
