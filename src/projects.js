@@ -1,6 +1,6 @@
 export {createProject, addItemToList, listOfProjects};
 
-const listOfProjects = {};
+const listOfProjects = [];
 
 class Project {
     constructor(title){
@@ -12,28 +12,24 @@ function createProject(newProjectName){
     const newProject = new Project(newProjectName);
 
     let matchFound = false;
-    Object.values(listOfProjects).forEach(project => {
+    
+    listOfProjects.forEach(project => {
         if (project.title === newProjectName){
             matchFound = true;
         };
     });
 
-    // creates new project with dynamic key if no match is found in listOfProjects
     if (!matchFound){
-        const newProjectKey = `item${Object.keys(listOfProjects).length+1}`;
-        listOfProjects[newProjectKey] = {
-            title: newProjectName,
-        };
-        console.log(`New child object added as ${newProjectKey}:`, listOfProjects[newProjectKey])
-        console.log(listOfProjects);
+        listOfProjects.push(newProject);
+        console.log(listOfProjects[0]);
     } else {
         console.log("Match found, no need to add a new child object");
-        console.log(listOfProjects);
     };
 };
 
 function addItemToList(item, list){
-    list.push(item);
+    const newTodoKey = `item${Object.keys(list).length+1}`;
+    list[newTodoKey] = item;
 };
 
 createProject("defaultProject");

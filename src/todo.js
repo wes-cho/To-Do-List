@@ -1,11 +1,11 @@
+import { addItemToList, listOfProjects } from "./projects";
 export { createTodoItem };
-// import { createProject, addItemToList, listOfProjects } from "./projects";
 
 class Todo_item{
-    constructor(title, dueDate, list, priority, notes){
+    constructor(title, dueDate, project, priority, notes){
         this.title = title;
         this.date = dueDate;
-        this.list = list;
+        this.project = project;
         this.priority = priority;
         this.notes = notes;
     }
@@ -19,17 +19,18 @@ function createTodoItem(){
         prompt("Is this high, medium, or low priority?"),
         prompt("Anything else you want to make note of?"),
     )
-    
-    // if (todoItem.list === ""){
-    //     defaultProject.push(todoItem);
-    // } else if (todoItem.list === listOfProjects.forEach(element => {return element})){
-    //     addItemToList(todoItem, todoItem.list);
-    //     console.log(todoItem.list);
+
+    // if (todoItem.project === ""){
+    //     addItemToList(todoItem, todoItem.project);
+    // } else if (todoItem.project === Object.values(todoItem.project).forEach(element => {return element})){
+    //     addItemToList(todoItem, todoItem.project);
     // } else {
-    //     const newProject = createProject(todoItem.list);
+    //     const newProject = createProject(todoItem.project);
     //     addItemToList(todoItem, newProject);
     // };
-    //need to test this;
+    // need to test this;
     return todoItem;
 };
+
+
 
