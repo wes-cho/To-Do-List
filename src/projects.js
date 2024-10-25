@@ -1,4 +1,4 @@
-export {createProject, addItemToList, listOfProjects};
+export {createProject, addItemToProject, listOfProjects};
 
 const listOfProjects = [];
 
@@ -12,7 +12,7 @@ function createProject(newProjectName){
     const newProject = new Project(newProjectName);
 
     let matchFound = false;
-    
+
     listOfProjects.forEach(project => {
         if (project.title === newProjectName){
             matchFound = true;
@@ -21,17 +21,18 @@ function createProject(newProjectName){
 
     if (!matchFound){
         listOfProjects.push(newProject);
-        console.log(listOfProjects[0]);
     } else {
         console.log("Match found, no need to add a new child object");
     };
+
+    return newProject;
 };
 
-function addItemToList(item, list){
-    const newTodoKey = `item${Object.keys(list).length+1}`;
-    list[newTodoKey] = item;
+function addItemToProject(item, project){
+    const newTodoKey = `item${Object.keys(project).length}`;
+    project[newTodoKey] = item;
 };
 
-createProject("defaultProject");
+createProject("Inbox");
 
 

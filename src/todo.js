@@ -1,4 +1,4 @@
-import { addItemToList, listOfProjects } from "./projects";
+import { addItemToProject, listOfProjects, createProject } from "./projects";
 export { createTodoItem };
 
 class Todo_item{
@@ -11,6 +11,8 @@ class Todo_item{
     }
 }
 
+console.log(listOfProjects);
+
 function createTodoItem(){
     const todoItem = new Todo_item(
         prompt("What do you want to do?"),
@@ -20,15 +22,21 @@ function createTodoItem(){
         prompt("Anything else you want to make note of?"),
     )
 
-    // if (todoItem.project === ""){
-    //     addItemToList(todoItem, todoItem.project);
-    // } else if (todoItem.project === Object.values(todoItem.project).forEach(element => {return element})){
-    //     addItemToList(todoItem, todoItem.project);
-    // } else {
-    //     const newProject = createProject(todoItem.project);
-    //     addItemToList(todoItem, newProject);
-    // };
-    // need to test this;
+    for (let project of listOfProjects){
+        if (todoItem.project === project.title){
+            addItemToProject(todoItem, project);
+            break;
+        } else if (todoItem.project === ""){
+            addItemToProject(todoItem, listOfProjects[0]);
+            break;
+        } else {
+            const newProject = createProject(todoItem.project);
+            addItemToProject(todoItem, newProject);
+            console.log(newProject);
+            break;
+        };
+    };
+
     return todoItem;
 };
 
