@@ -1,4 +1,4 @@
-export {createProject, addItemToProject, listOfProjects};
+export {createProject, addItemToProject, listOfProjects, InboxProject};
 
 const listOfProjects = [];
 
@@ -33,6 +33,6 @@ function addItemToProject(item, project){
     project[newTodoKey] = item;
 };
 
-createProject("Inbox");
+const InboxProject = createProject("Inbox");
 
 

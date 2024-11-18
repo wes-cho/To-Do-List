@@ -1,6 +1,7 @@
 import "./styles.css";
 import { createProject } from "./projects";
-import { createTodoItem } from "./todo"
+import { createTodoItem, displayProject } from "./todo"
+export { content };
 
 
 const content = document.querySelector("#main-container");
@@ -19,3 +20,11 @@ newProjectButton.addEventListener("click", ()=> {
     createProject(title);
 })
 content.appendChild(newProjectButton);
+
+const displayInboxButton = document.createElement("button");
+displayInboxButton.textContent = "Display Inbox List";
+displayInboxButton.addEventListener("click", () => {
+    displayProject();
+})
+content.appendChild(displayInboxButton);
+

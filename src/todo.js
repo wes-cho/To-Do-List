@@ -1,5 +1,6 @@
-import { addItemToProject, listOfProjects, createProject } from "./projects";
-export { createTodoItem };
+import { addItemToProject, listOfProjects, createProject, InboxProject } from "./projects";
+import { content } from "./index";
+export { createTodoItem, displayProject };
 
 class Todo_item{
     constructor(title, dueDate, project, priority, notes){
@@ -30,13 +31,22 @@ function createTodoItem(){
         } else {
             const newProject = createProject(todoItem.project);
             addItemToProject(todoItem, newProject);
-            console.log(newProject);
+            console.log("new project created");
             break;
         };
     };
 
+    console.log(InboxProject);
     return todoItem;
 };
 
-
-
+function displayProject(){
+    for (const key in InboxProject){
+        if (key !== "title" && InboxProject[key].title){
+            content.replaceChildren;
+            const item = document.createElement("p");
+            item.textContent = InboxProject[key].title;
+            content.appendChild(item);
+        };
+    };
+};
