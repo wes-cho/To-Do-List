@@ -1,5 +1,5 @@
 import "./styles.css";
-import { createProject } from "./projects";
+import { createProject, listOfProjects } from "./projects";
 import { createTodoItem, displayProject } from "./todo"
 export { content };
 
@@ -24,7 +24,26 @@ content.appendChild(newProjectButton);
 const displayInboxButton = document.createElement("button");
 displayInboxButton.textContent = "Display Inbox List";
 displayInboxButton.addEventListener("click", () => {
-    displayProject();
-})
+    const currentProject = prompt("Which project do you want to see?");
+    projectDisplay.replaceChildren();
+
+    listOfProjects.forEach(project => {
+        if (project.title === currentProject){
+            for (const key in project){
+                if (key !== "title" && project[key].title){
+                    const item = document.createElement("p");
+                    item.textContent = project[key].title;
+                    projectDisplay.appendChild(item);
+                };
+            };
+        } else {
+            console.log("Project not found in list of projects.");
+        }
+    });
+    
+});
 content.appendChild(displayInboxButton);
+
+const projectDisplay = document.createElement("div");
+content.appendChild(projectDisplay);
 

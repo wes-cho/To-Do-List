@@ -1,4 +1,4 @@
-import { addItemToProject, listOfProjects, createProject, InboxProject } from "./projects";
+import { addItemToProject, listOfProjects, createProject } from "./projects";
 import { content } from "./index";
 export { createTodoItem, displayProject };
 
@@ -36,17 +36,27 @@ function createTodoItem(){
         };
     };
 
-    console.log(InboxProject);
     return todoItem;
 };
 
-function displayProject(){
-    for (const key in InboxProject){
-        if (key !== "title" && InboxProject[key].title){
-            content.replaceChildren;
-            const item = document.createElement("p");
-            item.textContent = InboxProject[key].title;
-            content.appendChild(item);
-        };
-    };
+function displayProject(projectString){
+    
+    listOfProjects.forEach(project => {
+        if (project.title === projectString){
+            for (const key in project){
+                if (key !== "title" && project[key].title){
+                    const projectDisplay = document.createElement("div");
+                    content.appendChild(projectDisplay);
+                    projectDisplay.replaceChildren();
+                    const item = document.createElement("p");
+                    item.textContent = project[key].title;
+                    projectDisplay.appendChild(item);
+                };
+            };
+        } else {
+            console.log("Project not found in list of projects.");
+        }
+    });
+
+    
 };
