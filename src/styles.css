@@ -1,0 +1,19 @@
+#screen{
+    display: grid;
+    grid-template-columns: 300px 1fr;
+}
+#sidebar-nav{
+    background-color: darkcyan;
+    grid-column: 1;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+.sidebar-button{
+    width: fit-content;
+}
+#main-container{
+    grid-row: 1;
+    grid-column: 2;
+}

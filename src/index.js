@@ -1,9 +1,9 @@
 import "./styles.css";
 import { createProject, listOfProjects } from "./projects";
-import { createTodoItem, displayProject } from "./todo"
-export { content };
+import { createTodoItem } from "./todo"
+export {inbox};
 
-
+const inbox = createProject("Inbox");
 const content = document.querySelector("#main-container");
 
 const newTodoButton = document.createElement("button");
@@ -25,6 +25,7 @@ const displayInboxButton = document.createElement("button");
 displayInboxButton.textContent = "Display Inbox List";
 displayInboxButton.addEventListener("click", () => {
     const currentProject = prompt("Which project do you want to see?");
+    
     projectDisplay.replaceChildren();
 
     listOfProjects.forEach(project => {

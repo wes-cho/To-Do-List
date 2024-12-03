@@ -1,4 +1,4 @@
-export {createProject, addItemToProject, listOfProjects, Inbox};
+export {createProject, addItemToProject, listOfProjects };
 
 const listOfProjects = [];
 
@@ -32,19 +32,5 @@ function addItemToProject(item, project){
     const newTodoKey = `item${Object.keys(project).length}`;
     project[newTodoKey] = item;
 };
-
-// function findProject(projectString){
-
-//     listOfProjects.forEach(project => {
-//         if (project.title === projectString){
-//             return project;
-//         } else {
-//             console.log("Project not found in list of projects.");
-//         }
-//     });
-// };
-
-
-const Inbox = createProject("Inbox");
 
 
