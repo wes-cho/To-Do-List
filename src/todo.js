@@ -5,10 +5,10 @@ export { createTodoItem };
 class Todo_item{
     constructor(title, dueDate, project, priority, notes){
         this.title = title;
-        this.date = dueDate;
-        this.project = project;
-        this.priority = priority;
-        this.notes = notes;
+        this.Date = dueDate;
+        this.Project = project;
+        this.Priority = priority;
+        this.Notes = notes;
     };
 };
 
@@ -22,19 +22,19 @@ function createTodoItem(){
     )
 
     for (let project of listOfProjects){
-        if (todoItem.project === project.title){
+        if (todoItem.Project === project.title){
             addItemToProject(todoItem, project);
             break;
-        } else if (todoItem.project === ""){
+        } else if (todoItem.Project === ""){
             addItemToProject(todoItem, listOfProjects[0]);
             break;
         } else {
-            const newProject = createProject(todoItem.project);
+            const newProject = createProject(todoItem.Project);
             addItemToProject(todoItem, newProject);
             console.log("new project created");
             break;
         };
     };
-    
+
     return todoItem;
 };

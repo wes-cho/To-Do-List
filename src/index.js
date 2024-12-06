@@ -7,12 +7,12 @@ const inbox = createProject("Inbox");
 const content = document.querySelector("#main-container");
 const sidebar = document.querySelector("#sidebar-nav");
 
-// const displayInboxButton = document.createElement("button");
-// displayInboxButton.textContent = "Display Inbox List";
-// displayInboxButton.addEventListener("click", () => {
+// const displayProjectButton = document.createElement("button");
+// displayProjectButton.textContent = "Display Inbox List";
+// displayProjectButton.addEventListener("click", () => {
 //     const currentProject = prompt("Which project do you want to see?");
     
-//     projectDisplay.replaceChildren();
+//     content.replaceChildren();
 
 //     listOfProjects.forEach(project => {
 //         if (project.title === currentProject){
@@ -20,7 +20,7 @@ const sidebar = document.querySelector("#sidebar-nav");
 //                 if (key !== "title" && project[key].title){
 //                     const item = document.createElement("p");
 //                     item.textContent = project[key].title;
-//                     projectDisplay.appendChild(item);
+//                     content.appendChild(item);
 //                 };
 //             };
 //         } else {
@@ -35,18 +35,23 @@ const inboxButton = document.querySelector("#inbox");
 inboxButton.addEventListener("click", () => {    
     content.replaceChildren();
 
-    for (const key in inbox){
-        if (key != "title" && inbox[key].title){
+    for (const todoItem in inbox){
+        if (todoItem != "title" && inbox[todoItem].title){
             const item = document.createElement("p");
-            item.textContent = inbox[key].title;
+            item.textContent = inbox[todoItem].title;
+            item.addEventListener("click", () => {
+                // console.log(inbox[todoItem]);
+                for (const todoProperties in inbox[todoItem]){
+                    // console.log(inbox[todoItem]);
+                    const property = document.createElement("p");
+                    property.textContent = `${todoProperties}: ${inbox[todoItem][todoProperties]}`
+                    item.appendChild(property);
+                };
+            });
             content.appendChild(item);
         };
     };
 });
-
-// const projectDisplay = document.createElement("div");
-// content.appendChild(projectDisplay);
-
 
 const newButton = document.querySelector("#new");
 newButton.addEventListener("click", ()=> {
@@ -70,6 +75,6 @@ newButton.addEventListener("click", ()=> {
         newButton.removeAttribute('disabled');
     })
     sidebar.appendChild(newProjectButton);
-    newButton.setAttribute('disabled', '')
-})
+    newButton.setAttribute('disabled', '');
+});
 
