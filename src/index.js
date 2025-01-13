@@ -36,18 +36,85 @@ plusButton.addEventListener("click", () => {
 
     const todoForm = document.createElement("div");
     todoForm.setAttribute("id", "todoForm");
+    modal.appendChild(todoForm);
 
     const todoTitleLabel = document.createElement("label");
-    todoTitleLabel.setAttribute("for", "todoTitle");
-    todoTitleLabel.textContent = "Title:"
-    todoForm.appendChild(todoTitleLabel);
-    const todoTitle = document.createElement("input");
-    todoTitle.setAttribute("type", "text");
-    todoTitle.setAttribute("id", "todoTitle");
-    todoTitle.setAttribute("name", "todoTitle");
-    todoForm.appendChild(todoTitle);
+        todoTitleLabel.setAttribute("for", "todoTitle");
+        todoTitleLabel.textContent = "Title:"
+        todoForm.appendChild(todoTitleLabel);
+        const todoTitle = document.createElement("input");
+        todoTitle.setAttribute("type", "text");
+        todoTitle.setAttribute("id", "todoTitle");
+        todoTitle.setAttribute("name", "todoTitle");
+        todoForm.appendChild(todoTitle);
+    const br1 = document.createElement("br");
+        todoForm.appendChild(br1);
 
-    modal.appendChild(todoForm);
+    const dueDateLabel = document.createElement("label");
+        dueDateLabel.setAttribute("for", "dueDate");
+        dueDateLabel.textContent = "Due Date:";
+        todoForm.appendChild(dueDateLabel);
+        const dueDate = document.createElement("input");
+        dueDate.setAttribute("type", "date");
+        dueDate.setAttribute("id", "dueDate");
+        dueDate.setAttribute("name", "dueDate");
+        todoForm.appendChild(dueDate);
+    const br2 = document.createElement("br");
+        todoForm.appendChild(br2);
+
+    const projectLabel = document.createElement("label");
+        projectLabel.setAttribute("for", "project");
+        projectLabel.textContent = "Project:";
+        todoForm.appendChild(projectLabel);
+        const project = document.createElement("input");
+        project.setAttribute("type", "text");
+        project.setAttribute("id", "project");
+        project.setAttribute("name", "project");
+        todoForm.appendChild(project);
+    const br3 = document.createElement("br");
+        todoForm.appendChild(br3);
+
+    const priorityLabel = document.createElement("label");
+        priorityLabel.setAttribute("for", "priority");
+        priorityLabel.textContent = "Priority:";
+        todoForm.appendChild(priorityLabel);
+        const priority = document.createElement("select");
+        priority.setAttribute("id", "priority");
+        priority.setAttribute("name", "priority");
+        const high = document.createElement("option");
+        high.setAttribute("value", "high");
+        high.textContent = "High";
+        priority.appendChild(high);
+        const medium = document.createElement("option");
+        medium.setAttribute("value", "medium");
+        medium.textContent = "Medium";
+        priority.appendChild(medium);
+        const low = document.createElement("option");
+        low.setAttribute("value", "low");
+        low.textContent = "Low";
+        priority.appendChild(low);
+        todoForm.appendChild(priority);
+    const br4 = document.createElement("br");
+        todoForm.appendChild(br4);
+
+    const notesLabel = document.createElement("label");
+        notesLabel.setAttribute("for", "notes");
+        notesLabel.textContent = "Notes:";
+        todoForm.appendChild(notesLabel);
+        const notes = document.createElement("textarea");
+        notes.setAttribute("id", "notes");
+        notes.setAttribute("name", "notes");
+        todoForm.appendChild(notes);
+    const br5 = document.createElement("br");
+        todoForm.appendChild(br5);
+
+    const submit = document.createElement("button");
+    submit.textContent = "Submit";
+    todoForm.appendChild(submit);
+    submit.addEventListener("click", () => {
+        const newTodo = createTodoItem(todoTitle.value, dueDate.value, project.value, priority.value, notes.value);
+        modal.style.display = "none";
+    });
 
     window.onclick = function(event) {
         if (event.target == modal) {
