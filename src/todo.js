@@ -12,29 +12,41 @@ class Todo_item{
     };
 };
 
-function createTodoItem(){
+function createTodoItem(title,dueDate, project, priority, notes){
     const todoItem = new Todo_item(
-        prompt("What do you want to do?"),
-        prompt("What is the due date?"),
-        prompt("Which project would you like to add this item to?"),
-        prompt("Is this high, medium, or low priority?"),
-        prompt("Anything else you want to make note of?"),
-    )
-
-    for (let project of listOfProjects){
-        if (todoItem.Project === project.title){
-            addItemToProject(todoItem, project);
-            break;
-        } else if (todoItem.Project === ""){
-            addItemToProject(todoItem, listOfProjects[0]);
-            break;
-        } else {
-            const newProject = createProject(todoItem.Project);
-            addItemToProject(todoItem, newProject);
-            console.log("new project created");
-            break;
-        };
-    };
+        title = title,
+        dueDate = dueDate,
+        project = project,
+        priority = priority,
+        notes = notes,
+    );
 
     return todoItem;
 };
+
+// function createTodoItem(){
+//     const todoItem = new Todo_item(
+//         prompt("What do you want to do?"),
+//         prompt("What is the due date?"),
+//         prompt("Which project would you like to add this item to?"),
+//         prompt("Is this high, medium, or low priority?"),
+//         prompt("Anything else you want to make note of?"),
+//     )
+
+//     for (let project of listOfProjects){
+//         if (todoItem.Project === project.title){
+//             addItemToProject(todoItem, project);
+//             break;
+//         } else if (todoItem.Project === ""){
+//             addItemToProject(todoItem, listOfProjects[0]);
+//             break;
+//         } else {
+//             const newProject = createProject(todoItem.Project);
+//             addItemToProject(todoItem, newProject);
+//             console.log("new project created");
+//             break;
+//         };
+//     };
+
+//     return todoItem;
+// };
