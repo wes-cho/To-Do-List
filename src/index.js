@@ -38,18 +38,26 @@ plusButton.addEventListener("click", () => {
     todoForm.setAttribute("id", "todoForm");
     modal.appendChild(todoForm);
 
-    const todoTitleLabel = document.createElement("label");
-        todoTitleLabel.setAttribute("for", "todoTitle");
-        todoTitleLabel.textContent = "Title:"
-        todoForm.appendChild(todoTitleLabel);
-        const todoTitle = document.createElement("input");
+    const todoTitle = document.createElement("input");
         todoTitle.setAttribute("type", "text");
         todoTitle.setAttribute("id", "todoTitle");
         todoTitle.setAttribute("name", "todoTitle");
         todoTitle.setAttribute("class", "todoInput");
+        todoTitle.setAttribute("placeholder", "Task Title");
         todoForm.appendChild(todoTitle);
     const br1 = document.createElement("br");
         todoForm.appendChild(br1);
+
+    const notes = document.createElement("textarea");
+        notes.setAttribute("id", "notes");
+        notes.setAttribute("name", "notes");
+        notes.setAttribute("placeholder", "Task Notes");
+        notes.setAttribute("rows", "5");
+        notes.setAttribute("cols", "50");
+        notes.setAttribute("class", "todoInput");
+        todoForm.appendChild(notes);
+    const br2 = document.createElement("br");
+        todoForm.appendChild(br2);
 
     const dueDateLabel = document.createElement("label");
         dueDateLabel.setAttribute("for", "dueDate");
@@ -61,19 +69,6 @@ plusButton.addEventListener("click", () => {
         dueDate.setAttribute("name", "dueDate");
         dueDate.setAttribute("class", "todoInput");
         todoForm.appendChild(dueDate);
-    const br2 = document.createElement("br");
-        todoForm.appendChild(br2);
-
-    const projectLabel = document.createElement("label");
-        projectLabel.setAttribute("for", "project");
-        projectLabel.textContent = "Project:";
-        todoForm.appendChild(projectLabel);
-        const project = document.createElement("input");
-        project.setAttribute("type", "text");
-        project.setAttribute("id", "project");
-        project.setAttribute("name", "project");
-        project.setAttribute("class", "todoInput");
-        todoForm.appendChild(project);
     const br3 = document.createElement("br");
         todoForm.appendChild(br3);
 
@@ -101,14 +96,15 @@ plusButton.addEventListener("click", () => {
     const br4 = document.createElement("br");
         todoForm.appendChild(br4);
 
-    const notesLabel = document.createElement("label");
-        notesLabel.setAttribute("for", "notes");
-        notesLabel.textContent = "Notes:";
-        todoForm.appendChild(notesLabel);
-        const notes = document.createElement("textarea");
-        notes.setAttribute("id", "notes");
-        notes.setAttribute("name", "notes");
-        todoForm.appendChild(notes);
+    const projectLabel = document.createElement("label");
+        projectLabel.setAttribute("for", "project");
+        projectLabel.textContent = "Project:";
+        todoForm.appendChild(projectLabel);
+        const project = document.createElement("input");
+        project.setAttribute("type", "text");
+        project.setAttribute("id", "project");
+        project.setAttribute("name", "project");
+        todoForm.appendChild(project);
     const br5 = document.createElement("br");
         todoForm.appendChild(br5);
 

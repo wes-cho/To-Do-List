@@ -59,3 +59,7 @@ html{
 #submit{
     margin-top: 10px;
 }
+#notes{
+    resize: none;
+    font-family: Lato, sans-serif;
+}
