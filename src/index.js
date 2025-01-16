@@ -46,6 +46,7 @@ plusButton.addEventListener("click", () => {
         todoTitle.setAttribute("type", "text");
         todoTitle.setAttribute("id", "todoTitle");
         todoTitle.setAttribute("name", "todoTitle");
+        todoTitle.setAttribute("class", "todoInput");
         todoForm.appendChild(todoTitle);
     const br1 = document.createElement("br");
         todoForm.appendChild(br1);
@@ -58,6 +59,7 @@ plusButton.addEventListener("click", () => {
         dueDate.setAttribute("type", "date");
         dueDate.setAttribute("id", "dueDate");
         dueDate.setAttribute("name", "dueDate");
+        dueDate.setAttribute("class", "todoInput");
         todoForm.appendChild(dueDate);
     const br2 = document.createElement("br");
         todoForm.appendChild(br2);
@@ -70,6 +72,7 @@ plusButton.addEventListener("click", () => {
         project.setAttribute("type", "text");
         project.setAttribute("id", "project");
         project.setAttribute("name", "project");
+        project.setAttribute("class", "todoInput");
         todoForm.appendChild(project);
     const br3 = document.createElement("br");
         todoForm.appendChild(br3);
@@ -81,6 +84,7 @@ plusButton.addEventListener("click", () => {
         const priority = document.createElement("select");
         priority.setAttribute("id", "priority");
         priority.setAttribute("name", "priority");
+        priority.setAttribute("class", "todoInput");
         const high = document.createElement("option");
         high.setAttribute("value", "high");
         high.textContent = "High";
@@ -104,11 +108,13 @@ plusButton.addEventListener("click", () => {
         const notes = document.createElement("textarea");
         notes.setAttribute("id", "notes");
         notes.setAttribute("name", "notes");
+        // notes.setAttribute("class", "todoInput");
         todoForm.appendChild(notes);
     const br5 = document.createElement("br");
         todoForm.appendChild(br5);
 
     const submit = document.createElement("button");
+    submit.setAttribute("id", "submit");
     submit.textContent = "Submit";
     todoForm.appendChild(submit);
     submit.addEventListener("click", () => {
@@ -122,7 +128,6 @@ plusButton.addEventListener("click", () => {
         }
     };
 });
-
 
 // const form = document.querySelector("#form");
 // form.addEventListener("submit", (event)=>{
@@ -167,4 +172,5 @@ newButton.addEventListener("click", ()=> {
 // todoForm.addEventListener("submit", () => {
 //     //insert code that creates a todo object based on form submission
 // });
+
 
