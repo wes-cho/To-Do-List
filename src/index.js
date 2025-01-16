@@ -108,7 +108,6 @@ plusButton.addEventListener("click", () => {
         const notes = document.createElement("textarea");
         notes.setAttribute("id", "notes");
         notes.setAttribute("name", "notes");
-        // notes.setAttribute("class", "todoInput");
         todoForm.appendChild(notes);
     const br5 = document.createElement("br");
         todoForm.appendChild(br5);
@@ -128,20 +127,6 @@ plusButton.addEventListener("click", () => {
         }
     };
 });
-
-// const form = document.querySelector("#form");
-// form.addEventListener("submit", (event)=>{
-//     event.preventDefault();
-
-//     const formData = new FormData(form);
-
-//     const title = formData.get("title");
-//     const dueDate = formData.get("dueDate");
-//     const project = formData.get("project");
-//     const priority = formData.get("priority");
-//     const notes = formData.get("notes");
-
-// })
 
 const newButton = document.querySelector("#new");
 newButton.addEventListener("click", ()=> {
@@ -167,10 +152,5 @@ newButton.addEventListener("click", ()=> {
     sidebar.appendChild(newProjectButton);
     newButton.setAttribute('disabled', '');
 });
-
-// const todoForm = document.querySelector("#todo-form");
-// todoForm.addEventListener("submit", () => {
-//     //insert code that creates a todo object based on form submission
-// });
 
 
