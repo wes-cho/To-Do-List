@@ -9,7 +9,7 @@ html{
     color:white;
 }
 #sidebar-nav{
-    background-color: darkcyan;
+    background-color: #60AFFF;
     grid-column: 1;
     height: 100vh;
     display: flex;
@@ -56,8 +56,37 @@ html{
 .todoInput{
     margin-bottom: 10px;
 }
+#todoTitle{
+    font-size: 1.5rem;
+}
+#dueDateLabel{
+    font-weight: bold;
+}
+#dueDate{
+    margin-left: 5px;
+}
+#priorityLabel{
+    font-weight: bold;
+}
+#priority{
+    margin-left: 18px;
+}
+#projectLabel{
+    font-weight: bold;
+}
+#project{
+    margin-left: 20px;
+}
 #submit{
-    margin-top: 10px;
+    margin-top: 20px;
+    color: white;
+    font-family: Lato, sans-serif;
+    font-weight: bold;
+    font-size: 1.3rem;
+    padding: 10px;
+    background-color: #60AFFF;
+    border: 1.5px, solid, #2A2B2B;
+    border-radius: 5px;
 }
 #notes{
     resize: none;

@@ -61,6 +61,7 @@ plusButton.addEventListener("click", () => {
 
     const dueDateLabel = document.createElement("label");
         dueDateLabel.setAttribute("for", "dueDate");
+        dueDateLabel.setAttribute("id", "dueDateLabel");
         dueDateLabel.textContent = "Due Date:";
         todoForm.appendChild(dueDateLabel);
         const dueDate = document.createElement("input");
@@ -74,6 +75,7 @@ plusButton.addEventListener("click", () => {
 
     const priorityLabel = document.createElement("label");
         priorityLabel.setAttribute("for", "priority");
+        priorityLabel.setAttribute("id", "priorityLabel");
         priorityLabel.textContent = "Priority:";
         todoForm.appendChild(priorityLabel);
         const priority = document.createElement("select");
@@ -98,6 +100,7 @@ plusButton.addEventListener("click", () => {
 
     const projectLabel = document.createElement("label");
         projectLabel.setAttribute("for", "project");
+        projectLabel.setAttribute("id", "projectLabel");
         projectLabel.textContent = "Project:";
         todoForm.appendChild(projectLabel);
         const project = document.createElement("input");
