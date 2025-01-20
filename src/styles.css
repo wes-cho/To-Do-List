@@ -3,13 +3,16 @@ html{
 }
 #screen{
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 375px 1fr;
 }
 #title{
-    color:white;
+    color: #767FF9;
+    margin: 40px 0 60px 40px;
+    font-weight: 350;
+    font-size: 2.5rem;
 }
 #sidebar-nav{
-    background-color: #60AFFF;
+    background-color: #FAFAFA;
     grid-column: 1;
     height: 100vh;
     display: flex;
@@ -17,11 +20,21 @@ html{
     gap: 3rem;
 }
 .sidebar-button{
+    all: unset;
     width: fit-content;
+    margin-left: 40px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.sidebar-button:hover{
+    color: #767FF9;
 }
 #main{
     display: grid;
     grid-template-rows: 80px 1fr;
+}
+#content{
+    margin: 90px 0 0 90px;
 }
 #plus{
     grid-row: 1;
@@ -31,6 +44,8 @@ html{
 }
 #Inbox-title{
     grid-row: 1;
+    margin: 90px 0 0 90px;
+    color: #767FF9;
 }
 #modal{
     display: none;
