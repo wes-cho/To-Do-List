@@ -12,8 +12,17 @@ inboxButton.addEventListener("click", () => {
     content.replaceChildren();
     for (const todoItem in inbox){
         if (todoItem != "title" && inbox[todoItem].title){
-            const item = document.createElement("p");
-            item.textContent = inbox[todoItem].title;
+            const container = document.createElement("div");
+                container.setAttribute("class", "todoItemContainer");
+                content.appendChild(container);
+            const item = document.createElement("input");
+                item.setAttribute("type", "checkbox");
+                item.setAttribute("class", "checkbox");
+                container.appendChild(item);
+            const label = document.createElement("label");
+                label.setAttribute("class", "todoItem");
+                label.textContent = inbox[todoItem].title;
+                container.appendChild(label);
             item.addEventListener("click", () => {
                 for (const todoProperties in inbox[todoItem]){
                     if (todoProperties != "title"){
@@ -23,7 +32,6 @@ inboxButton.addEventListener("click", () => {
                     };
                 };
             });
-            content.appendChild(item);
         };
     };
 });
