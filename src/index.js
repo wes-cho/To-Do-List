@@ -23,15 +23,20 @@ inboxButton.addEventListener("click", () => {
                 label.setAttribute("class", "todoItem");
                 label.textContent = inbox[todoItem].title;
                 container.appendChild(label);
-            item.addEventListener("click", () => {
-                for (const todoProperties in inbox[todoItem]){
-                    if (todoProperties != "title"){
-                        const property = document.createElement("p");
-                        property.textContent = `${todoProperties}: ${inbox[todoItem][todoProperties]}`
-                        item.appendChild(property);
-                    };
-                };
-            });
+                label.addEventListener("click", () => {
+                    if (container.lastChild.className === "todoDetails"){
+                        container.lastChild.remove();
+                    } else {const todoDetailContainer = document.createElement("div");
+                        todoDetailContainer.setAttribute("class", "todoDetails");
+                        container.appendChild(todoDetailContainer);
+                        for (const todoProperties in inbox[todoItem]){
+                            if (todoProperties != "title"){
+                                const property = document.createElement("p");
+                                property.textContent = `${todoProperties}: ${inbox[todoItem][todoProperties]}`
+                                todoDetailContainer.appendChild(property);
+                            };
+                        }};
+                });
         };
     };
 });
@@ -135,29 +140,29 @@ plusButton.addEventListener("click", () => {
     };
 });
 
-const newButton = document.querySelector("#new");
-newButton.addEventListener("click", ()=> {
-    const newTodoButton = document.createElement("button");
-    newTodoButton.textContent = "New Todo";
-    newTodoButton.addEventListener("click", () => {
-        createTodoItem();
-        newTodoButton.remove();
-        newProjectButton.remove();
-        newButton.removeAttribute('disabled');
-    });
-    sidebar.appendChild(newTodoButton);
+// const newButton = document.querySelector("#new");
+// newButton.addEventListener("click", ()=> {
+//     const newTodoButton = document.createElement("button");
+//     newTodoButton.textContent = "New Todo";
+//     newTodoButton.addEventListener("click", () => {
+//         createTodoItem();
+//         newTodoButton.remove();
+//         newProjectButton.remove();
+//         newButton.removeAttribute('disabled');
+//     });
+//     sidebar.appendChild(newTodoButton);
     
-    const newProjectButton = document.createElement("button");
-    newProjectButton.textContent = "New Project";
-    newProjectButton.addEventListener("click", ()=> {
-        const title = prompt("What do you want to title this project?")
-        createProject(title);
-        newTodoButton.remove();
-        newProjectButton.remove();
-        newButton.removeAttribute('disabled');
-    })
-    sidebar.appendChild(newProjectButton);
-    newButton.setAttribute('disabled', '');
-});
+//     const newProjectButton = document.createElement("button");
+//     newProjectButton.textContent = "New Project";
+//     newProjectButton.addEventListener("click", ()=> {
+//         const title = prompt("What do you want to title this project?")
+//         createProject(title);
+//         newTodoButton.remove();
+//         newProjectButton.remove();
+//         newButton.removeAttribute('disabled');
+//     })
+//     sidebar.appendChild(newProjectButton);
+//     newButton.setAttribute('disabled', '');
+// });
 
 
