@@ -45,6 +45,8 @@ inboxButton.addEventListener("click", () => {
                             };
                         }};
                 });
+            const line = document.createElement("hr");
+                content.appendChild(line);
         };
     };
 });

@@ -36,31 +36,31 @@ html{
 }
 #main{
     display: grid;
+    grid-template-columns: 2fr 1fr;
     grid-template-rows: 80px 1fr;
 }
 #content{
     margin: 90px 0 0 90px;
+    width: 1fr;
 }
 #content *{
     font-size: 1.2rem;
 }
 .todoItemContainer{
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
-.todoItem{
-    border: 1px solid black;
-    padding: 7px 15px;
-    border-radius: 5px;
+hr{
+    opacity: 0.2;
+    width: 91%;
 }
 .todoItem:hover{
     font-weight: bold;
-    border: 2px solid black;
 }
 .todoDetails{
     display: grid;
     grid-template-columns: 15rem 15rem 15rem;
     grid-template-rows: 1fr 1fr;
-    margin-top: 10px;
+    margin: 10px 0 0 55px;
 }
 .Notes{
     grid-column: 1 / span 3;
