@@ -7,6 +7,8 @@ const inbox = createProject("Inbox");
 const content = document.querySelector("#content");
 const sidebar = document.querySelector("#sidebar-nav");
 
+const todoTest = createTodoItem("Test", "2021-12-31", "Inbox", "high", "This is a test todo item");
+
 const inboxButton = document.querySelector("#inbox");
 inboxButton.addEventListener("click", () => {    
     content.replaceChildren();
@@ -32,7 +34,10 @@ inboxButton.addEventListener("click", () => {
                         for (const todoProperties in inbox[todoItem]){
                             if (todoProperties != "title"){
                                 const property = document.createElement("p");
-                                property.textContent = `${todoProperties}: ${inbox[todoItem][todoProperties]}`
+                                const boldText = document.createElement("strong");
+                                boldText.textContent = `${todoProperties}: `;
+                                property.appendChild(boldText);
+                                property.appendChild(document.createTextNode(inbox[todoItem][todoProperties]));
                                 todoDetailContainer.appendChild(property);
                             };
                         }};

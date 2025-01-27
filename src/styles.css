@@ -47,6 +47,15 @@ html{
 .todoItemContainer{
     margin-bottom: 30px;
 }
+.todoItem{
+    border: 1px solid black;
+    padding: 7px 15px;
+    border-radius: 5px;
+}
+.todoItem:hover{
+    font-weight: bold;
+    border: 2px solid black;
+}
 #plus{
     grid-row: 1;
     height: fit-content;
