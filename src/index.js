@@ -38,6 +38,9 @@ inboxButton.addEventListener("click", () => {
                                 boldText.textContent = `${todoProperties}: `;
                                 property.appendChild(boldText);
                                 property.appendChild(document.createTextNode(inbox[todoItem][todoProperties]));
+                                if (todoProperties === "Notes"){
+                                    property.setAttribute("class", todoProperties);
+                                };
                                 todoDetailContainer.appendChild(property);
                             };
                         }};
