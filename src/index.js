@@ -7,7 +7,7 @@ const inbox = createProject("Inbox");
 const content = document.querySelector("#content");
 const sidebar = document.querySelector("#sidebar-nav");
 
-const todoTest = createTodoItem("Test", "2021-12-31", "Inbox", "high", "This is a test todo item");
+const todoTest = createTodoItem("Test", "2021-12-31", "Inbox", "High", "This is a test todo item");
 
 const inboxButton = document.querySelector("#inbox");
 inboxButton.addEventListener("click", () => {    
@@ -49,6 +49,48 @@ inboxButton.addEventListener("click", () => {
                 content.appendChild(line);
         };
     };
+});
+
+const todayButton = document.querySelector("#today");
+todayButton.addEventListener("click", () => {
+    content.replaceChildren();
+    for (const todoItem in inbox){
+        if (todoItem != "title" && inbox[todoItem].Date === new Date().toJSON().slice(0,10)){
+            const container = document.createElement("div");
+                container.setAttribute("class", "todoItemContainer");
+                content.appendChild(container);
+            const item = document.createElement("input");
+                item.setAttribute("type", "checkbox");
+                item.setAttribute("class", "checkbox");
+                container.appendChild(item);
+            const label = document.createElement("label");
+                label.setAttribute("class", "todoItem");
+                label.textContent = inbox[todoItem].title;
+                container.appendChild(label);
+                label.addEventListener("click", () => {
+                    if (container.lastChild.className === "todoDetails"){
+                        container.lastChild.remove();
+                    } else {const todoDetailContainer = document.createElement("div");
+                        todoDetailContainer.setAttribute("class", "todoDetails");
+                        container.appendChild(todoDetailContainer);
+                        for (const todoProperties in inbox[todoItem]){
+                            if (todoProperties != "title"){
+                                const property = document.createElement("p");
+                                const boldText = document.createElement("strong");
+                                boldText.textContent = `${todoProperties}: `;
+                                property.appendChild(boldText);
+                                property.appendChild(document.createTextNode(inbox[todoItem][todoProperties]));
+                                if (todoProperties === "Notes"){
+                                    property.setAttribute("class", todoProperties);
+                                };
+                                todoDetailContainer.appendChild(property);
+                            };
+                        }};
+                });
+            const line = document.createElement("hr");
+                content.appendChild(line);
+        };
+    }
 });
 
 const modal = document.querySelector("#modal");
@@ -106,15 +148,15 @@ plusButton.addEventListener("click", () => {
         priority.setAttribute("name", "priority");
         priority.setAttribute("class", "todoInput");
         const high = document.createElement("option");
-        high.setAttribute("value", "high");
+        high.setAttribute("value", "High");
         high.textContent = "High";
         priority.appendChild(high);
         const medium = document.createElement("option");
-        medium.setAttribute("value", "medium");
+        medium.setAttribute("value", "Medium");
         medium.textContent = "Medium";
         priority.appendChild(medium);
         const low = document.createElement("option");
-        low.setAttribute("value", "low");
+        low.setAttribute("value", "Low");
         low.textContent = "Low";
         priority.appendChild(low);
         todoForm.appendChild(priority);
@@ -149,6 +191,46 @@ plusButton.addEventListener("click", () => {
         }
     };
 });
+
+// THIS IS THE CODE TO DISPLAY TODAY'S TODO ITEMS
+// content.replaceChildren();
+//     for (const todoItem in inbox){
+//         if (todoItem != "title" && inbox[todoItem].Date === new Date().toISOString().split('T')[0]){
+//             const container = document.createElement("div");
+//                 container.setAttribute("class", "todoItemContainer");
+//                 content.appendChild(container);
+//             const item = document.createElement("input");
+//                 item.setAttribute("type", "checkbox");
+//                 item.setAttribute("class", "checkbox");
+//                 container.appendChild(item);
+//             const label = document.createElement("label");
+//                 label.setAttribute("class", "todoItem");
+//                 label.textContent = inbox[todoItem].title;
+//                 container.appendChild(label);
+//                 label.addEventListener("click", () => {
+//                     if (container.lastChild.className === "todoDetails"){
+//                         container.lastChild.remove();
+//                     } else {const todoDetailContainer = document.createElement("div");
+//                         todoDetailContainer.setAttribute("class", "todoDetails");
+//                         container.appendChild(todoDetailContainer);
+//                         for (const todoProperties in inbox[todoItem]){
+//                             if (todoProperties != "title"){
+//                                 const property = document.createElement("p");
+//                                 const boldText = document.createElement("strong");
+//                                 boldText.textContent = `${todoProperties}: `;
+//                                 property.appendChild(boldText);
+//                                 property.appendChild(document.createTextNode(inbox[todoItem][todoProperties]));
+//                                 if (todoProperties === "Notes"){
+//                                     property.setAttribute("class", todoProperties);
+//                                 };
+//                                 todoDetailContainer.appendChild(property);
+//                             };
+//                         }};
+//                 });
+//             const line = document.createElement("hr");
+//                 content.appendChild(line);
+//         };
+//     };
 
 // const newButton = document.querySelector("#new");
 // newButton.addEventListener("click", ()=> {
