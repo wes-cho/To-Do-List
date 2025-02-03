@@ -1,16 +1,16 @@
 import "./styles.css";
 import { createProject, listOfProjects } from "./projects";
-import { createTodoItem } from "./todo"
+import { createTodoItem } from "./todo";
 export {inbox};
 
 const inbox = createProject("Inbox");
 const content = document.querySelector("#content");
 const sidebar = document.querySelector("#sidebar-nav");
 
-const todoTest = createTodoItem("Test", "2021-12-31", "Inbox", "High", "This is a test todo item");
-const todayTest = createTodoItem("Today's Task", "2025-01-31", "", "Medium", "This is a test todo item for today");
-const tomorrowTest = createTodoItem("Tomorrow's Task", "2025-02-01", "", "Low", "This is a test todo item for tomorrow");
-const somedayTest = createTodoItem("Someday Task", "2025-03-01", "", "High", "This is a test todo item for someday");
+const todoTest = createTodoItem("Test", "2024-12-31", "Inbox", "High", "This is a test todo item");
+const todayTest = createTodoItem("Today's Task", new Date().toJSON().slice(0,10), "", "Medium", "This is a test todo item for today");
+const tomorrowTest = createTodoItem("Tomorrow's Task", new Date(new Date().setDate(new Date().getDate() +1)).toJSON().slice(0,10), "", "Low", "This is a test todo item for tomorrow");
+const somedayTest = createTodoItem("Someday Task", "2026-03-01", "", "High", "This is a test todo item for someday");
 
 const inboxButton = document.querySelector("#inbox");
 inboxButton.addEventListener("click", () => {    
@@ -100,7 +100,7 @@ const tomorrowButton = document.querySelector("#tomorrow");
 tomorrowButton.addEventListener("click", () => {
     content.replaceChildren();
     for (const todoItem in inbox){
-        if (todoItem != "title" && inbox[todoItem].Date === new Date(new Date().setHours(new Date().getDate() +1)).toJSON().slice(0,10)){
+        if (todoItem != "title" && inbox[todoItem].Date === new Date(new Date().setDate(new Date().getDate() +1)).toJSON().slice(0,10)){
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
@@ -174,8 +174,8 @@ somedayButton.addEventListener("click", () => {
                         }};
                 });
             const line = document.createElement("hr");
-                content.appendChild
-    }
+                content.appendChild(line);
+    };
 }});
 
 const modal = document.querySelector("#modal");
