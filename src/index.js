@@ -82,7 +82,7 @@ const todayButton = document.querySelector("#today");
 todayButton.addEventListener("click", () => {
     content.replaceChildren();
     for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
-        if (internalListOfTodos[todoItem] != "title" && internalListOfTodos[todoItem].Date === new Date().toJSON().slice(0,10)){
+        if (internalListOfTodos[todoItem] != "title" && internalListOfTodos[todoItem].Date === dateFormatter(new Date())){
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
@@ -124,7 +124,7 @@ const tomorrowButton = document.querySelector("#tomorrow");
 tomorrowButton.addEventListener("click", () => {
     content.replaceChildren();
     for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
-        if (internalListOfTodos[todoItem] != "title" && internalListOfTodos[todoItem].Date === new Date(new Date().setDate(new Date().getDate() +1)).toJSON().slice(0,10)){
+        if (internalListOfTodos[todoItem] != "title" && internalListOfTodos[todoItem].Date === dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
@@ -165,7 +165,7 @@ const somedayButton = document.querySelector("#someday");
 somedayButton.addEventListener("click", () => {
     content.replaceChildren();
     for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
-        if (internalListOfTodos[todoItem] != "title" && internalListOfTodos[todoItem].Date > new Date(new Date().setHours(new Date().getDate() +1)).toJSON().slice(0,10)){
+        if (internalListOfTodos[todoItem] != "title" && internalListOfTodos[todoItem].Date > dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
