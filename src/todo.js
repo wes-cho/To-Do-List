@@ -1,6 +1,6 @@
-import { addItemToProject, listOfProjects, createProject } from "./projects";
-import { inbox } from "./index.js";
-export { createTodoItem };
+export { createTodoItem, internalListOfTodos};
+
+const internalListOfTodos = [];
 
 class Todo_item{
     constructor(title, dueDate, project, priority, notes){
@@ -21,20 +21,7 @@ function createTodoItem(title,dueDate, project, priority, notes){
         notes = notes,
     );
 
-    for (let project of listOfProjects){
-        if (todoItem.Project === project.title){
-            addItemToProject(todoItem, project);
-            break;
-        } else if (todoItem.Project === ""){
-            addItemToProject(todoItem, listOfProjects[0]);
-            break;
-        } else {
-            const newProject = createProject(todoItem.Project);
-            addItemToProject(todoItem, newProject);
-            console.log("new project created");
-            break;
-        };
-    };
+    internalListOfTodos.push(todoItem);
 
     return todoItem;
 };

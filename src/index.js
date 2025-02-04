@@ -1,22 +1,19 @@
 import "./styles.css";
-import { createProject, listOfProjects } from "./projects";
-import { createTodoItem } from "./todo";
-export {inbox};
+import { createTodoItem, internalListOfTodos} from "./todo";
 
-const inbox = createProject("Inbox");
 const content = document.querySelector("#content");
 const sidebar = document.querySelector("#sidebar-nav");
 
 const todoTest = createTodoItem("Test", "2024-12-31", "Inbox", "High", "This is a test todo item");
-const todayTest = createTodoItem("Today's Task", new Date().toJSON().slice(0,10), "", "Medium", "This is a test todo item for today");
-const tomorrowTest = createTodoItem("Tomorrow's Task", new Date(new Date().setDate(new Date().getDate() +1)).toJSON().slice(0,10), "", "Low", "This is a test todo item for tomorrow");
+const todayTest = createTodoItem("Today's Task", "2025-02-03", "", "Medium", "This is a test todo item for today");
+const tomorrowTest = createTodoItem("Tomorrow's Task", "2025-02-04", "", "Low", "This is a test todo item for tomorrow");
 const somedayTest = createTodoItem("Someday Task", "2026-03-01", "", "High", "This is a test todo item for someday");
 
 const inboxButton = document.querySelector("#inbox");
 inboxButton.addEventListener("click", () => {    
     content.replaceChildren();
-    for (const todoItem in inbox){
-        if (todoItem != "title" && inbox[todoItem].title){
+    for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
+        if (internalListOfTodos[todoItem] != "title" && internalListOfTodos[todoItem].title){
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
@@ -26,7 +23,7 @@ inboxButton.addEventListener("click", () => {
                 container.appendChild(item);
             const label = document.createElement("label");
                 label.setAttribute("class", "todoItem");
-                label.textContent = inbox[todoItem].title;
+                label.textContent = internalListOfTodos[todoItem].title;
                 container.appendChild(label);
                 label.addEventListener("click", () => {
                     if (container.lastChild.className === "todoDetails"){
@@ -34,13 +31,14 @@ inboxButton.addEventListener("click", () => {
                     } else {const todoDetailContainer = document.createElement("div");
                         todoDetailContainer.setAttribute("class", "todoDetails");
                         container.appendChild(todoDetailContainer);
-                        for (const todoProperties in inbox[todoItem]){
+                        for (const todoProperties in internalListOfTodos[todoItem]){
                             if (todoProperties != "title"){
                                 const property = document.createElement("p");
                                 const boldText = document.createElement("strong");
                                 boldText.textContent = `${todoProperties}: `;
                                 property.appendChild(boldText);
-                                property.appendChild(document.createTextNode(inbox[todoItem][todoProperties]));
+                                property.appendChild(document.createTextNode(internalListOfTodos[todoItem][todoProperties]));
+                                // setting a class to be able to style the Notes section
                                 if (todoProperties === "Notes"){
                                     property.setAttribute("class", todoProperties);
                                 };
@@ -57,8 +55,8 @@ inboxButton.addEventListener("click", () => {
 const todayButton = document.querySelector("#today");
 todayButton.addEventListener("click", () => {
     content.replaceChildren();
-    for (const todoItem in inbox){
-        if (todoItem != "title" && inbox[todoItem].Date === new Date().toJSON().slice(0,10)){
+    for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
+        if (internalListOfTodos[todoItem] != "title" && internalListOfTodos[todoItem].Date === new Date().toJSON().slice(0,10)){
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
@@ -68,7 +66,7 @@ todayButton.addEventListener("click", () => {
                 container.appendChild(item);
             const label = document.createElement("label");
                 label.setAttribute("class", "todoItem");
-                label.textContent = inbox[todoItem].title;
+                label.textContent = internalListOfTodos[todoItem].title;
                 container.appendChild(label);
                 label.addEventListener("click", () => {
                     if (container.lastChild.className === "todoDetails"){
@@ -76,13 +74,13 @@ todayButton.addEventListener("click", () => {
                     } else {const todoDetailContainer = document.createElement("div");
                         todoDetailContainer.setAttribute("class", "todoDetails");
                         container.appendChild(todoDetailContainer);
-                        for (const todoProperties in inbox[todoItem]){
+                        for (const todoProperties in internalListOfTodos[todoItem]){
                             if (todoProperties != "title"){
                                 const property = document.createElement("p");
                                 const boldText = document.createElement("strong");
                                 boldText.textContent = `${todoProperties}: `;
                                 property.appendChild(boldText);
-                                property.appendChild(document.createTextNode(inbox[todoItem][todoProperties]));
+                                property.appendChild(document.createTextNode(internalListOfTodos[todoItem][todoProperties]));
                                 if (todoProperties === "Notes"){
                                     property.setAttribute("class", todoProperties);
                                 };
@@ -99,8 +97,8 @@ todayButton.addEventListener("click", () => {
 const tomorrowButton = document.querySelector("#tomorrow");
 tomorrowButton.addEventListener("click", () => {
     content.replaceChildren();
-    for (const todoItem in inbox){
-        if (todoItem != "title" && inbox[todoItem].Date === new Date(new Date().setDate(new Date().getDate() +1)).toJSON().slice(0,10)){
+    for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
+        if (internalListOfTodos[todoItem] != "title" && internalListOfTodos[todoItem].Date === new Date(new Date().setDate(new Date().getDate() +1)).toJSON().slice(0,10)){
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
@@ -110,7 +108,7 @@ tomorrowButton.addEventListener("click", () => {
                 container.appendChild(item);
             const label = document.createElement("label");
                 label.setAttribute("class", "todoItem");
-                label.textContent = inbox[todoItem].title;
+                label.textContent = internalListOfTodos[todoItem].title;
                 container.appendChild(label);
                 label.addEventListener("click", () => {
                     if (container.lastChild.className === "todoDetails"){
@@ -118,13 +116,13 @@ tomorrowButton.addEventListener("click", () => {
                     } else {const todoDetailContainer = document.createElement("div");
                         todoDetailContainer.setAttribute("class", "todoDetails");
                         container.appendChild(todoDetailContainer);
-                        for (const todoProperties in inbox[todoItem]){
+                        for (const todoProperties in internalListOfTodos[todoItem]){
                             if (todoProperties != "title"){
                                 const property = document.createElement("p");
                                 const boldText = document.createElement("strong");
                                 boldText.textContent = `${todoProperties}: `;
                                 property.appendChild(boldText);
-                                property.appendChild(document.createTextNode(inbox[todoItem][todoProperties]));
+                                property.appendChild(document.createTextNode(internalListOfTodos[todoItem][todoProperties]));
                                 if (todoProperties === "Notes"){
                                     property.setAttribute("class", todoProperties);
                                 };
@@ -140,8 +138,8 @@ tomorrowButton.addEventListener("click", () => {
 const somedayButton = document.querySelector("#someday");
 somedayButton.addEventListener("click", () => {
     content.replaceChildren();
-    for (const todoItem in inbox){
-        if (todoItem != "title" && inbox[todoItem].Date > new Date(new Date().setHours(new Date().getDate() +1)).toJSON().slice(0,10)){
+    for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
+        if (internalListOfTodos[todoItem] != "title" && internalListOfTodos[todoItem].Date > new Date(new Date().setHours(new Date().getDate() +1)).toJSON().slice(0,10)){
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
@@ -151,7 +149,7 @@ somedayButton.addEventListener("click", () => {
                 container.appendChild(item);
             const label = document.createElement("label");
                 label.setAttribute("class", "todoItem");
-                label.textContent = inbox[todoItem].title;
+                label.textContent = internalListOfTodos[todoItem].title;
                 container.appendChild(label);
                 label.addEventListener("click", () => {
                     if (container.lastChild.className === "todoDetails"){
@@ -159,13 +157,13 @@ somedayButton.addEventListener("click", () => {
                     } else {const todoDetailContainer = document.createElement("div");
                         todoDetailContainer.setAttribute("class", "todoDetails");
                         container.appendChild(todoDetailContainer);
-                        for (const todoProperties in inbox[todoItem]){
+                        for (const todoProperties in internalListOfTodos[todoItem]){
                             if (todoProperties != "title"){
                                 const property = document.createElement("p");
                                 const boldText = document.createElement("strong");
                                 boldText.textContent = `${todoProperties}: `;
                                 property.appendChild(boldText);
-                                property.appendChild(document.createTextNode(inbox[todoItem][todoProperties]));
+                                property.appendChild(document.createTextNode(internalListOfTodos[todoItem][todoProperties]));
                                 if (todoProperties === "Notes"){
                                     property.setAttribute("class", todoProperties);
                                 };
