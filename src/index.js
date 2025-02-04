@@ -8,9 +8,35 @@ const content = document.querySelector("#content");
 const sidebar = document.querySelector("#sidebar-nav");
 
 const todoTest = createTodoItem("Test", "2024-12-31", "Inbox", "High", "This is a test todo item");
-const todayTest = createTodoItem("Today's Task", new Date().toJSON().slice(0,10), "", "Medium", "This is a test todo item for today");
-const tomorrowTest = createTodoItem("Tomorrow's Task", new Date(new Date().setDate(new Date().getDate() +1)).toJSON().slice(0,10), "", "Low", "This is a test todo item for tomorrow");
+const todayTest = createTodoItem("Today's Task", dateFormatter(new Date()), "", "Medium", "This is a test todo item for today");
+const tomorrowTest = createTodoItem("Tomorrow's Task", dateFormatter(new Date(new Date().setDate(new Date().getDate() +1))), "", "Low", "This is a test todo item for tomorrow");
 const somedayTest = createTodoItem("Someday Task", "2026-03-01", "", "High", "This is a test todo item for someday");
+
+function dateFormatter(dateInstance){
+    const date = new Date(dateInstance);
+    const year = date.getFullYear();
+    var month = date.getMonth()+1;    
+    var day = date.getDate();
+
+    if (month < 10 && day < 10){
+        month = `0${month}`;
+        day = `0${day}`;
+
+        return `${year}-${month}-${day}`;
+
+    } else if (month < 10 && day > 10){
+        month = `0${month}`;
+
+        return `${year}-${month}-${day}`;
+
+    } else if (month > 10 && day < 10){
+        day = `0${day}`;
+
+        return `${year}-${month}-${day}`;
+    } else {
+        return `${year}-${month}-${day}`
+    };
+};
 
 const inboxButton = document.querySelector("#inbox");
 inboxButton.addEventListener("click", () => {    
@@ -58,7 +84,7 @@ const todayButton = document.querySelector("#today");
 todayButton.addEventListener("click", () => {
     content.replaceChildren();
     for (const todoItem in inbox){
-        if (todoItem != "title" && inbox[todoItem].Date === new Date().toJSON().slice(0,10)){
+        if (todoItem != "title" && inbox[todoItem].Date === dateFormatter(new Date())){
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
@@ -100,7 +126,7 @@ const tomorrowButton = document.querySelector("#tomorrow");
 tomorrowButton.addEventListener("click", () => {
     content.replaceChildren();
     for (const todoItem in inbox){
-        if (todoItem != "title" && inbox[todoItem].Date === new Date(new Date().setDate(new Date().getDate() +1)).toJSON().slice(0,10)){
+        if (todoItem != "title" && inbox[todoItem].Date === dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
@@ -141,7 +167,7 @@ const somedayButton = document.querySelector("#someday");
 somedayButton.addEventListener("click", () => {
     content.replaceChildren();
     for (const todoItem in inbox){
-        if (todoItem != "title" && inbox[todoItem].Date > new Date(new Date().setHours(new Date().getDate() +1)).toJSON().slice(0,10)){
+        if (todoItem != "title" && inbox[todoItem].Date > dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
