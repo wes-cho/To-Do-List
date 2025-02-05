@@ -18,7 +18,7 @@ html{
     height: 93vh;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
 }
 .sidebar-button{
     all: unset;
@@ -29,6 +29,9 @@ html{
 }
 .sidebar-button:hover{
     color: #767FF9;
+}
+#someday{
+    gap:0;
 }
 #sidebar-new-project{
     background-color: #FAFAFA;
@@ -108,11 +111,25 @@ hr{
     left: 47%;
     padding: 20px;
 }
+#newProjectForm{
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+    position: fixed;
+    z-index: 1;
+    top: 30%;
+    left: 47%;
+    padding: 20px;
+}
 .todoInput{
     margin-bottom: 10px;
 }
 #todoTitle{
     font-size: 1.5rem;
+}
+#projectName{
+    font-size: 2rem;
+    width: 400px;
 }
 #dueDateLabel{
     font-weight: bold;

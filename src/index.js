@@ -207,11 +207,54 @@ somedayButton.addEventListener("click", () => {
     };
 }});
 
+
 const modal = document.querySelector("#modal");
+
+const addProjectButton = document.querySelector("#new");
+addProjectButton.addEventListener("click", ()=> {
+    modal.style.display = "block";
+    modal.replaceChildren();
+
+    const newProjectForm = document.createElement("div");
+    newProjectForm.setAttribute("id", "newProjectForm");
+    modal.appendChild(newProjectForm);
+
+    const projectName = document.createElement("input");
+    projectName.setAttribute("type", "text");
+    projectName.setAttribute("id", "projectName");
+    projectName.setAttribute("name", "projectName");
+    projectName.setAttribute("class", "todoInput");
+    projectName.setAttribute("placeholder", "Project Name");
+    newProjectForm.appendChild(projectName);
+    const br1 = document.createElement("br");
+        newProjectForm.appendChild(br1);
+
+    const submit = document.createElement("button");
+    submit.setAttribute("id", "submit");
+    submit.textContent = "Submit";
+    newProjectForm.appendChild(submit);
+    submit.addEventListener("click", () => {
+        const newProject = projectName.value;
+        const newProjectButton = document.createElement("button");
+        newProjectButton.setAttribute("id", newProject);
+        newProjectButton.setAttribute("class", "sidebar-button");
+        newProjectButton.textContent = newProject;
+        sidebar.appendChild(newProjectButton);
+
+        modal.style.display = "none";
+    });
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+    };
+});
 
 const plusButton = document.querySelector("#plus");
 plusButton.addEventListener("click", () => {
     modal.style.display = "block";
+    modal.replaceChildren();
 
     const todoForm = document.createElement("div");
     todoForm.setAttribute("id", "todoForm");
