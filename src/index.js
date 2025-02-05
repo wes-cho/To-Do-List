@@ -5,8 +5,8 @@ const content = document.querySelector("#content");
 const sidebar = document.querySelector("#sidebar-nav");
 
 const todoTest = createTodoItem("Test", "2024-12-31", "Inbox", "High", "This is a test todo item");
-const todayTest = createTodoItem("Today's Task", "2025-02-03", "", "Medium", "This is a test todo item for today");
-const tomorrowTest = createTodoItem("Tomorrow's Task", "2025-02-04", "", "Low", "This is a test todo item for tomorrow");
+const todayTest = createTodoItem("Today's Task", dateFormatter(new Date()), "", "Medium", "This is a test todo item for today");
+const tomorrowTest = createTodoItem("Tomorrow's Task", dateFormatter(new Date(new Date().setDate(new Date().getDate() +1))), "", "Low", "This is a test todo item for tomorrow");
 const somedayTest = createTodoItem("Someday Task", "2026-03-01", "", "High", "This is a test todo item for someday");
 
 function dateFormatter(dateInstance){
@@ -39,7 +39,7 @@ const inboxButton = document.querySelector("#inbox");
 inboxButton.addEventListener("click", () => {    
     content.replaceChildren();
     for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
-        if (internalListOfTodos[todoItem] != "title" && internalListOfTodos[todoItem].title){
+        if (internalListOfTodos[todoItem].Project === "Inbox" || internalListOfTodos[todoItem].Project === ""){
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
@@ -64,7 +64,12 @@ inboxButton.addEventListener("click", () => {
                                 boldText.textContent = `${todoProperties}: `;
                                 property.appendChild(boldText);
                                 property.appendChild(document.createTextNode(internalListOfTodos[todoItem][todoProperties]));
-                                // setting a class to be able to style the Notes section
+                                property.addEventListener("click", () => {
+                                    const newProject = prompt("What project would you like to move this item to?");
+                                    internalListOfTodos[todoItem].Project = newProject;
+                                    console.log(internalListOfTodos[todoItem])
+                                });
+                                // sets class for styling
                                 if (todoProperties === "Notes"){
                                     property.setAttribute("class", todoProperties);
                                 };
@@ -82,7 +87,7 @@ const todayButton = document.querySelector("#today");
 todayButton.addEventListener("click", () => {
     content.replaceChildren();
     for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
-        if (internalListOfTodos[todoItem] != "title" && internalListOfTodos[todoItem].Date === dateFormatter(new Date())){
+        if (internalListOfTodos[todoItem].Date === dateFormatter(new Date())){
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
@@ -124,7 +129,7 @@ const tomorrowButton = document.querySelector("#tomorrow");
 tomorrowButton.addEventListener("click", () => {
     content.replaceChildren();
     for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
-        if (internalListOfTodos[todoItem] != "title" && internalListOfTodos[todoItem].Date === dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
+        if (internalListOfTodos[todoItem].Date === dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
@@ -165,7 +170,7 @@ const somedayButton = document.querySelector("#someday");
 somedayButton.addEventListener("click", () => {
     content.replaceChildren();
     for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
-        if (internalListOfTodos[todoItem] != "title" && internalListOfTodos[todoItem].Date > dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
+        if (internalListOfTodos[todoItem].Date > dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
@@ -301,29 +306,5 @@ plusButton.addEventListener("click", () => {
     };
 });
 
-// const newButton = document.querySelector("#new");
-// newButton.addEventListener("click", ()=> {
-//     const newTodoButton = document.createElement("button");
-//     newTodoButton.textContent = "New Todo";
-//     newTodoButton.addEventListener("click", () => {
-//         createTodoItem();
-//         newTodoButton.remove();
-//         newProjectButton.remove();
-//         newButton.removeAttribute('disabled');
-//     });
-//     sidebar.appendChild(newTodoButton);
-    
-//     const newProjectButton = document.createElement("button");
-//     newProjectButton.textContent = "New Project";
-//     newProjectButton.addEventListener("click", ()=> {
-//         const title = prompt("What do you want to title this project?")
-//         createProject(title);
-//         newTodoButton.remove();
-//         newProjectButton.remove();
-//         newButton.removeAttribute('disabled');
-//     })
-//     sidebar.appendChild(newProjectButton);
-//     newButton.setAttribute('disabled', '');
-// });
 
 

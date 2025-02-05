@@ -4,6 +4,7 @@ html{
 #screen{
     display: grid;
     grid-template-columns: 375px 1fr;
+    grid-template-rows: 1fr;
 }
 #title{
     color: #767FF9;
@@ -14,7 +15,7 @@ html{
 #sidebar-nav{
     background-color: #FAFAFA;
     grid-column: 1;
-    height: 100vh;
+    height: 93vh;
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -28,6 +29,15 @@ html{
 }
 .sidebar-button:hover{
     color: #767FF9;
+}
+#sidebar-new-project{
+    background-color: #FAFAFA;
+    height: 6vh;
+    grid-column: 1;
+    grid-row: 2;
+}
+#new-project-icon{
+    margin-right: 13px;
 }
 .checkbox{
     margin-right: 2rem;
