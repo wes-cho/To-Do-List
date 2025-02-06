@@ -1,5 +1,6 @@
 import "./styles.css";
 import { createTodoItem, internalListOfTodos} from "./todo";
+import { listOfProjects } from "./projects";
 
 const content = document.querySelector("#content");
 const sidebar = document.querySelector("#sidebar-nav");
@@ -66,8 +67,11 @@ inboxButton.addEventListener("click", () => {
                                 property.appendChild(document.createTextNode(internalListOfTodos[todoItem][todoProperties]));
                                 property.addEventListener("click", () => {
                                     const newProject = prompt("What project would you like to move this item to?");
+                                    if (listOfProjects.includes(newProject)){
                                     internalListOfTodos[todoItem].Project = newProject;
-                                    console.log(internalListOfTodos[todoItem])
+                                    } else {
+                                        alert("Project does not exist");
+                                    };
                                 });
                                 // sets class for styling
                                 if (todoProperties === "Notes"){
@@ -235,10 +239,60 @@ addProjectButton.addEventListener("click", ()=> {
     newProjectForm.appendChild(submit);
     submit.addEventListener("click", () => {
         const newProject = projectName.value;
+        listOfProjects.push(newProject);
         const newProjectButton = document.createElement("button");
         newProjectButton.setAttribute("id", newProject);
         newProjectButton.setAttribute("class", "sidebar-button");
         newProjectButton.textContent = newProject;
+        newProjectButton.addEventListener("click", () => {
+            //copy paste from inboxButton event listener, more or less
+            content.replaceChildren(); 
+            for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
+                if (internalListOfTodos[todoItem].Project === newProject){
+                    const container = document.createElement("div");
+                        container.setAttribute("class", "todoItemContainer");
+                        content.appendChild(container);
+                    const item = document.createElement("input");
+                        item.setAttribute("type", "checkbox");
+                        item.setAttribute("class", "checkbox");
+                        container.appendChild(item);
+                    const label = document.createElement("label");
+                        label.setAttribute("class", "todoItem");
+                        label.textContent = internalListOfTodos[todoItem].title;
+                        container.appendChild(label);
+                        label.addEventListener("click", () => {
+                            if (container.lastChild.className === "todoDetails"){
+                                container.lastChild.remove();
+                            } else {const todoDetailContainer = document.createElement("div");
+                                todoDetailContainer.setAttribute("class", "todoDetails");
+                                container.appendChild(todoDetailContainer);
+                                for (const todoProperties in internalListOfTodos[todoItem]){
+                                    if (todoProperties != "title"){
+                                        const property = document.createElement("p");
+                                        const boldText = document.createElement("strong");
+                                        boldText.textContent = `${todoProperties}: `;
+                                        property.appendChild(boldText);
+                                        property.appendChild(document.createTextNode(internalListOfTodos[todoItem][todoProperties]));
+                                        property.addEventListener("click", () => {
+                                            const newProject = prompt("What project would you like to move this item to?");
+                                            if (listOfProjects.includes(newProject)){
+                                            internalListOfTodos[todoItem].Project = newProject;
+                                            } else {
+                                                alert("Project does not exist");
+                                            };
+                                        });
+                                        if (todoProperties === "Notes"){
+                                            property.setAttribute("class", todoProperties);
+                                        };
+                                        todoDetailContainer.appendChild(property);
+                                    };
+                                }};
+                        });
+                    const line = document.createElement("hr");
+                        content.appendChild(line);
+                };
+            };
+        });
         sidebar.appendChild(newProjectButton);
 
         modal.style.display = "none";
@@ -348,6 +402,3 @@ plusButton.addEventListener("click", () => {
         }
     };
 });
-
-
-

@@ -1,0 +1,4 @@
+export {listOfProjects};
+
+const listOfProjects = [];
+
