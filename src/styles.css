@@ -85,7 +85,7 @@ hr{
     width: fit-content;
     justify-self: end;
 }
-#Inbox-title{
+#main-title{
     grid-row: 1;
     margin: 90px 0 0 90px;
     color: #767FF9;

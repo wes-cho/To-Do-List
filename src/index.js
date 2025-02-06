@@ -4,6 +4,7 @@ import { listOfProjects } from "./projects";
 
 const content = document.querySelector("#content");
 const sidebar = document.querySelector("#sidebar-nav");
+const mainTitle = document.querySelector("#main-title");
 
 const todoTest = createTodoItem("Test", "2024-12-31", "Inbox", "High", "This is a test todo item");
 const todayTest = createTodoItem("Today's Task", dateFormatter(new Date()), "", "Medium", "This is a test todo item for today");
@@ -39,6 +40,7 @@ function dateFormatter(dateInstance){
 const inboxButton = document.querySelector("#inbox");
 inboxButton.addEventListener("click", () => {    
     content.replaceChildren();
+    mainTitle.textContent = "Inbox";
     for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
         if (internalListOfTodos[todoItem].Project === "Inbox" || internalListOfTodos[todoItem].Project === ""){
             const container = document.createElement("div");
@@ -90,6 +92,7 @@ inboxButton.addEventListener("click", () => {
 const todayButton = document.querySelector("#today");
 todayButton.addEventListener("click", () => {
     content.replaceChildren();
+    mainTitle.textContent = "Today";
     for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
         if (internalListOfTodos[todoItem].Date === dateFormatter(new Date())){
             const container = document.createElement("div");
@@ -132,6 +135,7 @@ todayButton.addEventListener("click", () => {
 const tomorrowButton = document.querySelector("#tomorrow");
 tomorrowButton.addEventListener("click", () => {
     content.replaceChildren();
+    mainTitle.textContent = "Tomorrow";
     for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
         if (internalListOfTodos[todoItem].Date === dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
             const container = document.createElement("div");
@@ -173,6 +177,7 @@ tomorrowButton.addEventListener("click", () => {
 const somedayButton = document.querySelector("#someday");
 somedayButton.addEventListener("click", () => {
     content.replaceChildren();
+    mainTitle.textContent = "Someday";
     for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
         if (internalListOfTodos[todoItem].Date > dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
             const container = document.createElement("div");
@@ -211,7 +216,6 @@ somedayButton.addEventListener("click", () => {
     };
 }});
 
-
 const modal = document.querySelector("#modal");
 
 const addProjectButton = document.querySelector("#new");
@@ -247,6 +251,7 @@ addProjectButton.addEventListener("click", ()=> {
         newProjectButton.addEventListener("click", () => {
             //copy paste from inboxButton event listener, more or less
             content.replaceChildren(); 
+            mainTitle.textContent = newProject;
             for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
                 if (internalListOfTodos[todoItem].Project === newProject){
                     const container = document.createElement("div");
