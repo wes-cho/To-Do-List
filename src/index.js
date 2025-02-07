@@ -1,6 +1,6 @@
 import "./styles.css";
 import { createTodoItem, internalListOfTodos} from "./todo";
-import { listOfProjects } from "./projects";
+import { listOfProjects, createProject, addItemToProject, removeItemFromProject, displayProject } from "./projects";
 import { dateFormatter } from "./helper";
 
 const content = document.querySelector("#content");
@@ -21,10 +21,10 @@ inboxButton.addEventListener("click", () => {
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
-            const item = document.createElement("input");
-                item.setAttribute("type", "checkbox");
-                item.setAttribute("class", "checkbox");
-                container.appendChild(item);
+            const checkbox = document.createElement("input");
+                checkbox.setAttribute("type", "checkbox");
+                checkbox.setAttribute("class", "checkbox");
+                container.appendChild(checkbox);
             const label = document.createElement("label");
                 label.setAttribute("class", "todoItem");
                 label.textContent = internalListOfTodos[todoItem].title;
@@ -73,10 +73,10 @@ todayButton.addEventListener("click", () => {
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
-            const item = document.createElement("input");
-                item.setAttribute("type", "checkbox");
-                item.setAttribute("class", "checkbox");
-                container.appendChild(item);
+            const checkbox = document.createElement("input");
+                checkbox.setAttribute("type", "checkbox");
+                checkbox.setAttribute("class", "checkbox");
+                container.appendChild(checkbox);
             const label = document.createElement("label");
                 label.setAttribute("class", "todoItem");
                 label.textContent = internalListOfTodos[todoItem].title;
@@ -116,9 +116,9 @@ tomorrowButton.addEventListener("click", () => {
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
-            const item = document.createElement("input");
-                item.setAttribute("type", "checkbox");
-                item.setAttribute("class", "checkbox");
+            const checkbox = document.createElement("input");
+                checkbox.setAttribute("type", "checkbox");
+                checkbox.setAttribute("class", "checkbox");
                 container.appendChild(item);
             const label = document.createElement("label");
                 label.setAttribute("class", "todoItem");
@@ -158,10 +158,10 @@ somedayButton.addEventListener("click", () => {
             const container = document.createElement("div");
                 container.setAttribute("class", "todoItemContainer");
                 content.appendChild(container);
-            const item = document.createElement("input");
-                item.setAttribute("type", "checkbox");
-                item.setAttribute("class", "checkbox");
-                container.appendChild(item);
+            const checkbox = document.createElement("input");
+                checkbox.setAttribute("type", "checkbox");
+                checkbox.setAttribute("class", "checkbox");
+                container.appendChild(checkbox);
             const label = document.createElement("label");
                 label.setAttribute("class", "todoItem");
                 label.textContent = internalListOfTodos[todoItem].title;
@@ -218,13 +218,12 @@ addProjectButton.addEventListener("click", ()=> {
     newProjectForm.appendChild(submit);
     submit.addEventListener("click", () => {
         const newProject = projectName.value;
-        listOfProjects.push(newProject);
+        createProject(newProject);
         const newProjectButton = document.createElement("button");
         newProjectButton.setAttribute("id", newProject);
         newProjectButton.setAttribute("class", "sidebar-button");
         newProjectButton.textContent = newProject;
         newProjectButton.addEventListener("click", () => {
-            //copy paste from inboxButton event listener, more or less
             content.replaceChildren(); 
             mainTitle.textContent = newProject;
             for (let todoItem = 0; todoItem<internalListOfTodos.length; todoItem++){
@@ -232,9 +231,9 @@ addProjectButton.addEventListener("click", ()=> {
                     const container = document.createElement("div");
                         container.setAttribute("class", "todoItemContainer");
                         content.appendChild(container);
-                    const item = document.createElement("input");
-                        item.setAttribute("type", "checkbox");
-                        item.setAttribute("class", "checkbox");
+                    const checkbox = document.createElement("input");
+                        checkbox.setAttribute("type", "checkbox");
+                        checkbox.setAttribute("class", "checkbox");
                         container.appendChild(item);
                     const label = document.createElement("label");
                         label.setAttribute("class", "todoItem");
