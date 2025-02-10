@@ -1,6 +1,7 @@
 import "./styles.css";
 import { createProject, listOfProjects } from "./projects";
 import { createTodoItem } from "./todo";
+import { dateFormatter } from "./helperr";
 export {inbox};
 
 const inbox = createProject("Inbox");
@@ -11,32 +12,6 @@ const todoTest = createTodoItem("Test", "2024-12-31", "Inbox", "High", "This is 
 const todayTest = createTodoItem("Today's Task", dateFormatter(new Date()), "", "Medium", "This is a test todo item for today");
 const tomorrowTest = createTodoItem("Tomorrow's Task", dateFormatter(new Date(new Date().setDate(new Date().getDate() +1))), "", "Low", "This is a test todo item for tomorrow");
 const somedayTest = createTodoItem("Someday Task", "2026-03-01", "", "High", "This is a test todo item for someday");
-
-function dateFormatter(dateInstance){
-    const date = new Date(dateInstance);
-    const year = date.getFullYear();
-    var month = date.getMonth()+1;    
-    var day = date.getDate();
-
-    if (month < 10 && day < 10){
-        month = `0${month}`;
-        day = `0${day}`;
-
-        return `${year}-${month}-${day}`;
-
-    } else if (month < 10 && day > 10){
-        month = `0${month}`;
-
-        return `${year}-${month}-${day}`;
-
-    } else if (month > 10 && day < 10){
-        day = `0${day}`;
-
-        return `${year}-${month}-${day}`;
-    } else {
-        return `${year}-${month}-${day}`
-    };
-};
 
 const inboxButton = document.querySelector("#inbox");
 inboxButton.addEventListener("click", () => {    
