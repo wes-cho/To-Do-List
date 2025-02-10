@@ -1,7 +1,7 @@
 import "./styles.css";
 import { createProject, listOfProjects } from "./projects";
 import { createTodoItem } from "./todo";
-import { dateFormatter } from "./helperr";
+import { dateFormatter } from "./helper";
 export {inbox};
 
 const inbox = createProject("Inbox");
