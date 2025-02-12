@@ -2,7 +2,7 @@ export {listOfProjects, createProject, addItemToProject, removeItemFromProject, 
 
 const listOfProjects = [];
 
-function createProject(projectName){
+function createProject(project){
     const projectName = [];
     listOfProjects.push(project);
 
