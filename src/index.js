@@ -7,6 +7,7 @@ export {inbox};
 const inbox = createProject("Inbox");
 const content = document.querySelector("#content");
 const sidebar = document.querySelector("#sidebar-nav");
+const mainTitle = document.querySelector("#main-title");
 
 const todoTest = createTodoItem("Test", "2024-12-31", "Inbox", "High", "This is a test todo item");
 const todayTest = createTodoItem("Today's Task", dateFormatter(new Date()), "", "Medium", "This is a test todo item for today");
@@ -16,6 +17,7 @@ const somedayTest = createTodoItem("Someday Task", "2026-03-01", "", "High", "Th
 const inboxButton = document.querySelector("#inbox");
 inboxButton.addEventListener("click", () => {    
     content.replaceChildren();
+    mainTitle.textContent = "Inbox";
     for (const todoItem in inbox){
         if (todoItem != "title" && inbox[todoItem].title){
             const container = document.createElement("div");
@@ -58,6 +60,7 @@ inboxButton.addEventListener("click", () => {
 const todayButton = document.querySelector("#today");
 todayButton.addEventListener("click", () => {
     content.replaceChildren();
+    mainTitle.textContent = "Today";
     for (const todoItem in inbox){
         if (todoItem != "title" && inbox[todoItem].Date === dateFormatter(new Date())){
             const container = document.createElement("div");
@@ -100,6 +103,7 @@ todayButton.addEventListener("click", () => {
 const tomorrowButton = document.querySelector("#tomorrow");
 tomorrowButton.addEventListener("click", () => {
     content.replaceChildren();
+    mainTitle.textContent = "Tomorrow";
     for (const todoItem in inbox){
         if (todoItem != "title" && inbox[todoItem].Date === dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
             const container = document.createElement("div");
@@ -141,6 +145,7 @@ tomorrowButton.addEventListener("click", () => {
 const somedayButton = document.querySelector("#someday");
 somedayButton.addEventListener("click", () => {
     content.replaceChildren();
+    mainTitle.textContent = "Someday";
     for (const todoItem in inbox){
         if (todoItem != "title" && inbox[todoItem].Date > dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
             const container = document.createElement("div");
