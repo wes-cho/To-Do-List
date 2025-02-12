@@ -4,6 +4,7 @@ html{
 #screen{
     display: grid;
     grid-template-columns: 375px 1fr;
+    grid-template-rows: 1fr;
 }
 #title{
     color: #767FF9;
@@ -14,10 +15,10 @@ html{
 #sidebar-nav{
     background-color: #FAFAFA;
     grid-column: 1;
-    height: 100vh;
+    height: 93vh;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
 }
 .sidebar-button{
     all: unset;
@@ -28,6 +29,18 @@ html{
 }
 .sidebar-button:hover{
     color: #767FF9;
+}
+#someday{
+    gap:0;
+}
+#sidebar-new-project{
+    background-color: #FAFAFA;
+    height: 6vh;
+    grid-column: 1;
+    grid-row: 2;
+}
+#new-project-icon{
+    margin-right: 13px;
 }
 .checkbox{
     margin-right: 2rem;
@@ -72,7 +85,7 @@ hr{
     width: fit-content;
     justify-self: end;
 }
-#Inbox-title{
+#main-title{
     grid-row: 1;
     margin: 90px 0 0 90px;
     color: #767FF9;
@@ -95,7 +108,17 @@ hr{
     position: fixed;
     z-index: 1;
     top: 30%;
-    left: 47%;
+    left: 38%;
+    padding: 20px;
+}
+#newProjectForm{
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+    position: fixed;
+    z-index: 1;
+    top: 30%;
+    left: 38%;
     padding: 20px;
 }
 .todoInput{
@@ -103,6 +126,10 @@ hr{
 }
 #todoTitle{
     font-size: 1.5rem;
+}
+#projectName{
+    font-size: 2rem;
+    width: 400px;
 }
 #dueDateLabel{
     font-weight: bold;
