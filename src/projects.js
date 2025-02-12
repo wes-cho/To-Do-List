@@ -1,24 +1,34 @@
-export {listOfProjects, createProject, addItemToProject, removeItemFromProject, displayProject};
+export {createProject, addItemToProject, listOfProjects };
 
 const listOfProjects = [];
 
-function createProject(project){
-    const projectName = [];
-    listOfProjects.push(project);
-
-    return project;
+class Project {
+    constructor(title){
+        this.title = title;
+    }
 };
 
-function addItemToProject(project, item){
-    project.push(item);
-};
+function createProject(newProjectName){
+    const newProject = new Project(newProjectName);
 
-function removeItemFromProject(project, index){
-    project.slice(index, 1);
-};
+    let matchFound = false;
 
-function displayProject(projectArray){
-    projectArray.forEach(project => {
-        console.log(project);
+    listOfProjects.forEach(project => {
+        if (project.title === newProjectName){
+            matchFound = true;
+        };
     });
+
+    if (!matchFound){
+        listOfProjects.push(newProject);
+    } else {
+        console.log("Match found, no need to add a new child object");
+    };
+
+    return newProject;
+};
+
+function addItemToProject(item, project){
+    const newTodoKey = `item${Object.keys(project).length}`;
+    project[newTodoKey] = item;
 };
