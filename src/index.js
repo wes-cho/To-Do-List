@@ -186,6 +186,97 @@ somedayButton.addEventListener("click", () => {
 
 const modal = document.querySelector("#modal");
 
+const addProjectButton = document.querySelector("#new");
+addProjectButton.addEventListener("click", ()=> {
+    modal.style.display = "block";
+    modal.replaceChildren();
+
+    const newProjectForm = document.createElement("div");
+    newProjectForm.setAttribute("id", "newProjectForm");
+    modal.appendChild(newProjectForm);
+
+    const projectName = document.createElement("input");
+    projectName.setAttribute("type", "text");
+    projectName.setAttribute("id", "projectName");
+    projectName.setAttribute("name", "projectName");
+    projectName.setAttribute("class", "todoInput");
+    projectName.setAttribute("placeholder", "Project Name");
+    newProjectForm.appendChild(projectName);
+    const br1 = document.createElement("br");
+        newProjectForm.appendChild(br1);
+
+    const submit = document.createElement("button");
+    submit.setAttribute("id", "submit");
+    submit.textContent = "Submit";
+    newProjectForm.appendChild(submit);
+    submit.addEventListener("click", () => {
+        const newProjectName = projectName.value;
+        const newProjectObject = createProject(newProjectName);
+        const newProjectButton = document.createElement("button");
+        newProjectButton.setAttribute("id", newProjectName);
+        newProjectButton.setAttribute("class", "sidebar-button");
+        newProjectButton.textContent = newProjectName;
+        newProjectButton.addEventListener("click", () => {
+            content.replaceChildren();
+            mainTitle.textContent = newProjectName;
+            for (const todoItem in newProjectObject){
+                if (todoItem != "title" && newProjectObject[todoItem].title){
+                    const container = document.createElement("div");
+                        container.setAttribute("class", "todoItemContainer");
+                        content.appendChild(container);
+                    const checkbox = document.createElement("input");
+                        checkbox.setAttribute("type", "checkbox");
+                        checkbox.setAttribute("class", "checkbox");
+                        container.appendChild(item);
+                    const label = document.createElement("label");
+                        label.setAttribute("class", "todoItem");
+                        label.textContent = newProjectObject[todoItem].title;
+                        container.appendChild(label);
+                        label.addEventListener("click", () => {
+                            if (container.lastChild.className === "todoDetails"){
+                                container.lastChild.remove();
+                            } else {const todoDetailContainer = document.createElement("div");
+                                todoDetailContainer.setAttribute("class", "todoDetails");
+                                container.appendChild(todoDetailContainer);
+                                for (const todoProperties in newProjectObject[todoItem]){
+                                    if (todoProperties != "title"){
+                                        const property = document.createElement("p");
+                                        const boldText = document.createElement("strong");
+                                        boldText.textContent = `${todoProperties}: `;
+                                        property.appendChild(boldText);
+                                        property.appendChild(document.createTextNode(newProjectObject[todoItem][todoProperties]));
+                                        property.addEventListener("click", () => {
+                                            const newProject = prompt("What project would you like to move this item to?");
+                                            if (listOfProjects.includes(newProject)){
+                                                newProjectObject[todoItem].Project = newProject;
+                                            } else {
+                                                alert("Project does not exist");
+                                            };
+                                        });
+                                        if (todoProperties === "Notes"){
+                                            property.setAttribute("class", todoProperties);
+                                        };
+                                        todoDetailContainer.appendChild(property);
+                                    };
+                                }};
+                        });
+                    const line = document.createElement("hr");
+                        content.appendChild(line);
+                };
+            };
+        });
+        sidebar.appendChild(newProjectButton);
+
+        modal.style.display = "none";
+    });
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+    };
+});
+
 const plusButton = document.querySelector("#plus");
 plusButton.addEventListener("click", () => {
     modal.style.display = "block";
