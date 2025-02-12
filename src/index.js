@@ -280,6 +280,7 @@ addProjectButton.addEventListener("click", ()=> {
 const plusButton = document.querySelector("#plus");
 plusButton.addEventListener("click", () => {
     modal.style.display = "block";
+    modal.replaceChildren();
 
     const todoForm = document.createElement("div");
     todoForm.setAttribute("id", "todoForm");
