@@ -26,12 +26,11 @@ function createTodoItem(title,dueDate, project, priority, notes){
             addItemToProject(todoItem, project);
             break;
         } else if (todoItem.Project === ""){
+            todoItem.Project = "Inbox";
             addItemToProject(todoItem, listOfProjects[0]);
             break;
         } else {
-            const newProject = createProject(todoItem.Project);
-            addItemToProject(todoItem, newProject);
-            console.log("new project created");
+            alert("That project does not exist. Please create project first.")
             break;
         };
     };
