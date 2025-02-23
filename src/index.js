@@ -231,7 +231,7 @@ addProjectButton.addEventListener("click", ()=> {
                         const checkbox = document.createElement("input");
                             checkbox.setAttribute("type", "checkbox");
                             checkbox.setAttribute("class", "checkbox");
-                            container.appendChild(item);
+                            container.appendChild(checkbox);
                         const label = document.createElement("label");
                             label.setAttribute("class", "todoItem");
                             label.textContent = newProjectObject[todoItem].title;
