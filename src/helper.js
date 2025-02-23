@@ -54,20 +54,25 @@ function projectDisplay(project){
                                     boldText.textContent = `${todoProperties}: `;
                                     property.appendChild(boldText);
                                     property.appendChild(document.createTextNode(project[todoItem][todoProperties]));
-                                    property.addEventListener("click", () => {
-                                        const newProject = prompt("What project would you like to move this item to?");
-                                        if (listOfProjects.some(project => project.title === newProject)){
-                                            // change the project value of the todo item
-                                            project[todoItem].Project = newProject;
-                                            // add the todo item to the new project
-                                            const newProjectObject = listOfProjects.find(project => project.title === newProject);
-                                            newProjectObject[todoItem] = project[todoItem];
-                                            // remove the todo item from the old project
-                                            delete project[todoItem];
-                                        } else {
-                                            alert("Project does not exist");
-                                        };
-                                    });
+                                    if (todoProperties === "Project"){
+                                        property.addEventListener("click", () => {
+                                            const newProject = prompt("What project would you like to move this item to?");
+                                            if (listOfProjects.some(project => project.title === newProject)){
+                                                // change the project value of the todo item
+                                                project[todoItem].Project = newProject;
+                                                // add the todo item to the new project
+                                                const newProjectObject = listOfProjects.find(project => project.title === newProject);
+                                                newProjectObject[todoItem] = project[todoItem];
+                                                // remove the todo item from the old project
+                                                delete project[todoItem];
+                                            } else {
+                                                alert("Project does not exist");
+                                            };
+                                        });
+                                    } else {
+                                        //create different event listeners depending on the todo property
+                                    }
+                                    
                                     if (todoProperties === "Notes"){
                                         property.setAttribute("class", todoProperties);
                                     };
