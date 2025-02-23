@@ -21,11 +21,10 @@ function createProject(newProjectName){
 
     if (!matchFound){
         listOfProjects.push(newProject);
-        return newProject;
     } else {
         console.log("Match found, no need to add a new child object");
-        return false;
     };
+    return newProject;
 };
 
 function addItemToProject(item, project){

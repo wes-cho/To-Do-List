@@ -210,9 +210,10 @@ addProjectButton.addEventListener("click", ()=> {
     submit.textContent = "Submit";
     newProjectForm.appendChild(submit);
     submit.addEventListener("click", () => {
-        if (createProject(projectName.value) === false){
+        if (listOfProjects.some(project => project.title === projectName.value)){
             alert("Project already exists");
-        } else{
+            console.log(listOfProjects);
+        } else {
             const newProjectName = projectName.value;
             const newProjectObject = createProject(newProjectName);
             const newProjectButton = document.createElement("button");
@@ -368,7 +369,11 @@ newTodoButton.addEventListener("click", () => {
     submit.textContent = "Submit";
     todoForm.appendChild(submit);
     submit.addEventListener("click", () => {
-        const newTodo = createTodoItem(todoTitle.value, dueDate.value, project.value, priority.value, notes.value);
+        if(createTodoItem(todoTitle.value, dueDate.value, project.value, priority.value, notes.value)){
+            alert("Task added successfully");
+        } else{
+            alert("Project does not exist");
+        };
         modal.style.display = "none";
     });
 

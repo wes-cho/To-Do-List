@@ -1,4 +1,4 @@
-import { addItemToProject, listOfProjects, createProject } from "./projects";
+import { addItemToProject, listOfProjects } from "./projects";
 import { inbox } from "./index.js";
 export { createTodoItem };
 
@@ -24,16 +24,15 @@ function createTodoItem(title,dueDate, project, priority, notes){
     for (let project of listOfProjects){
         if (todoItem.Project === project.title){
             addItemToProject(todoItem, project);
-            break;
+            return todoItem;
         } else if (todoItem.Project === ""){
             todoItem.Project = "Inbox";
             addItemToProject(todoItem, listOfProjects[0]);
-            break;
+            return todoItem;
+        } else if (todoItem.Project != project.title){
+            continue;
         } else {
-            alert("That project does not exist. Please create project first.")
-            break;
-        };
+            alert("Error: Project not found");
+        }
     };
-
-    return todoItem;
 };
