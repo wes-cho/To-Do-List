@@ -1,5 +1,4 @@
 import { addItemToProject, listOfProjects } from "./projects";
-import { inbox } from "./index.js";
 export { createTodoItem };
 
 class Todo_item{

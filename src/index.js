@@ -1,8 +1,7 @@
 import "./styles.css";
 import { createProject, listOfProjects } from "./projects";
 import { createTodoItem } from "./todo";
-import { dateFormatter } from "./helper";
-export {inbox};
+import { dateFormatter, projectDisplay } from "./helper";
 
 const inbox = createProject("Inbox");
 const content = document.querySelector("#content");
@@ -18,43 +17,7 @@ const inboxButton = document.querySelector("#inbox");
 inboxButton.addEventListener("click", () => {    
     content.replaceChildren();
     mainTitle.textContent = "Inbox";
-    for (const todoItem in inbox){
-        if (todoItem != "title" && inbox[todoItem].title){
-            const container = document.createElement("div");
-                container.setAttribute("class", "todoItemContainer");
-                content.appendChild(container);
-            const item = document.createElement("input");
-                item.setAttribute("type", "checkbox");
-                item.setAttribute("class", "checkbox");
-                container.appendChild(item);
-            const label = document.createElement("label");
-                label.setAttribute("class", "todoItem");
-                label.textContent = inbox[todoItem].title;
-                container.appendChild(label);
-                label.addEventListener("click", () => {
-                    if (container.lastChild.className === "todoDetails"){
-                        container.lastChild.remove();
-                    } else {const todoDetailContainer = document.createElement("div");
-                        todoDetailContainer.setAttribute("class", "todoDetails");
-                        container.appendChild(todoDetailContainer);
-                        for (const todoProperties in inbox[todoItem]){
-                            if (todoProperties != "title"){
-                                const property = document.createElement("p");
-                                const boldText = document.createElement("strong");
-                                boldText.textContent = `${todoProperties}: `;
-                                property.appendChild(boldText);
-                                property.appendChild(document.createTextNode(inbox[todoItem][todoProperties]));
-                                if (todoProperties === "Notes"){
-                                    property.setAttribute("class", todoProperties);
-                                };
-                                todoDetailContainer.appendChild(property);
-                            };
-                        }};
-                });
-            const line = document.createElement("hr");
-                content.appendChild(line);
-        };
-    };
+    projectDisplay(listOfProjects.find(project => project.title === "Inbox"));
 });
 
 const todayButton = document.querySelector("#today");
@@ -187,7 +150,7 @@ somedayButton.addEventListener("click", () => {
 const modal = document.querySelector("#modal");
 
 const addProjectButton = document.querySelector("#new");
-addProjectButton.addEventListener("click", ()=> {
+addProjectButton.addEventListener("click", ()=> { 
     modal.style.display = "block";
     modal.replaceChildren();
 
@@ -223,51 +186,7 @@ addProjectButton.addEventListener("click", ()=> {
             newProjectButton.addEventListener("click", () => {
                 content.replaceChildren();
                 mainTitle.textContent = newProjectName;
-                for (const todoItem in newProjectObject){
-                    if (todoItem != "title" && newProjectObject[todoItem].title){
-                        const container = document.createElement("div");
-                            container.setAttribute("class", "todoItemContainer");
-                            content.appendChild(container);
-                        const checkbox = document.createElement("input");
-                            checkbox.setAttribute("type", "checkbox");
-                            checkbox.setAttribute("class", "checkbox");
-                            container.appendChild(checkbox);
-                        const label = document.createElement("label");
-                            label.setAttribute("class", "todoItem");
-                            label.textContent = newProjectObject[todoItem].title;
-                            container.appendChild(label);
-                            label.addEventListener("click", () => {
-                                if (container.lastChild.className === "todoDetails"){
-                                    container.lastChild.remove();
-                                } else {const todoDetailContainer = document.createElement("div");
-                                    todoDetailContainer.setAttribute("class", "todoDetails");
-                                    container.appendChild(todoDetailContainer);
-                                    for (const todoProperties in newProjectObject[todoItem]){
-                                        if (todoProperties != "title"){
-                                            const property = document.createElement("p");
-                                            const boldText = document.createElement("strong");
-                                            boldText.textContent = `${todoProperties}: `;
-                                            property.appendChild(boldText);
-                                            property.appendChild(document.createTextNode(newProjectObject[todoItem][todoProperties]));
-                                            property.addEventListener("click", () => {
-                                                const newProject = prompt("What project would you like to move this item to?");
-                                                if (listOfProjects.includes(newProject)){
-                                                    newProjectObject[todoItem].Project = newProject;
-                                                } else {
-                                                    alert("Project does not exist");
-                                                };
-                                            });
-                                            if (todoProperties === "Notes"){
-                                                property.setAttribute("class", todoProperties);
-                                            };
-                                            todoDetailContainer.appendChild(property);
-                                        };
-                                    }};
-                            });
-                        const line = document.createElement("hr");
-                            content.appendChild(line);
-                    };
-                };
+                projectDisplay(newProjectObject);
             });
             sidebar.appendChild(newProjectButton);
 
