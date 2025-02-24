@@ -78,8 +78,7 @@ function projectDisplay(project){
                                         });
                                     } else {
                                         //create different event listeners depending on the todo property
-                                    }
-                                    
+                                    };
                                     if (todoProperties === "Notes"){
                                         property.setAttribute("class", todoProperties);
                                     };

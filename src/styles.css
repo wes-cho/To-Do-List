@@ -89,6 +89,36 @@ hr{
     height: fit-content;
     width: fit-content;
     justify-self: end;
+    font-size: 3rem;
+    cursor: pointer;
+    width: 5rem;
+    height: 5rem;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+#plus:hover{
+    background-color: #767FF9;
+    color: white;
+}
+#plus:active{
+    background-color: #646efa;
+}
+#new{
+    cursor: pointer;
+    width: 11rem;
+    height: 3rem;
+    padding-left: 1rem;
+    border: 1px solid #FAFAFA;
+    border-radius: 10px;
+}
+#new:hover{
+    background-color: #767FF9;
+    border: 0.8px solid lightgray;
+    color: white;
+}
+#new:active{
+    background-color: #646efa;
 }
 #main-title{
     grid-row: 1;
