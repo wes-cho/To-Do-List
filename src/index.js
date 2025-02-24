@@ -1,7 +1,7 @@
 import "./styles.css";
 import { createProject, listOfProjects } from "./projects";
 import { createTodoItem } from "./todo";
-import { dateFormatter, projectDisplay } from "./helper";
+import { dateFormatter, projectDisplay} from "./helper";
 
 const inbox = createProject("Inbox");
 const content = document.querySelector("#content");
@@ -17,133 +17,47 @@ const inboxButton = document.querySelector("#inbox");
 inboxButton.addEventListener("click", () => {    
     content.replaceChildren();
     mainTitle.textContent = "Inbox";
-    projectDisplay(listOfProjects.find(project => project.title === "Inbox"));
+    for (const todoItem in inbox){
+        if (todoItem != "title" && inbox[todoItem].title){
+            projectDisplay(todoItem, inbox);
+        };
+    };
 });
 
 const todayButton = document.querySelector("#today");
 todayButton.addEventListener("click", () => {
     content.replaceChildren();
     mainTitle.textContent = "Today";
-    for (const todoItem in inbox){
-        if (todoItem != "title" && inbox[todoItem].Date === dateFormatter(new Date())){
-            const container = document.createElement("div");
-                container.setAttribute("class", "todoItemContainer");
-                content.appendChild(container);
-            const item = document.createElement("input");
-                item.setAttribute("type", "checkbox");
-                item.setAttribute("class", "checkbox");
-                container.appendChild(item);
-            const label = document.createElement("label");
-                label.setAttribute("class", "todoItem");
-                label.textContent = inbox[todoItem].title;
-                container.appendChild(label);
-                label.addEventListener("click", () => {
-                    if (container.lastChild.className === "todoDetails"){
-                        container.lastChild.remove();
-                    } else {const todoDetailContainer = document.createElement("div");
-                        todoDetailContainer.setAttribute("class", "todoDetails");
-                        container.appendChild(todoDetailContainer);
-                        for (const todoProperties in inbox[todoItem]){
-                            if (todoProperties != "title"){
-                                const property = document.createElement("p");
-                                const boldText = document.createElement("strong");
-                                boldText.textContent = `${todoProperties}: `;
-                                property.appendChild(boldText);
-                                property.appendChild(document.createTextNode(inbox[todoItem][todoProperties]));
-                                if (todoProperties === "Notes"){
-                                    property.setAttribute("class", todoProperties);
-                                };
-                                todoDetailContainer.appendChild(property);
-                            };
-                        }};
-                });
-            const line = document.createElement("hr");
-                content.appendChild(line);
+    for (let i=0; i<listOfProjects.length; i++){
+        for (const todoItem in listOfProjects[i]){
+            if (todoItem != "title" && listOfProjects[i][todoItem].Date === dateFormatter(new Date())){
+                projectDisplay(todoItem, listOfProjects[i]);
+            };
         };
-    }
+    };    
 });
 
 const tomorrowButton = document.querySelector("#tomorrow");
 tomorrowButton.addEventListener("click", () => {
     content.replaceChildren();
     mainTitle.textContent = "Tomorrow";
-    for (const todoItem in inbox){
-        if (todoItem != "title" && inbox[todoItem].Date === dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
-            const container = document.createElement("div");
-                container.setAttribute("class", "todoItemContainer");
-                content.appendChild(container);
-            const item = document.createElement("input");
-                item.setAttribute("type", "checkbox");
-                item.setAttribute("class", "checkbox");
-                container.appendChild(item);
-            const label = document.createElement("label");
-                label.setAttribute("class", "todoItem");
-                label.textContent = inbox[todoItem].title;
-                container.appendChild(label);
-                label.addEventListener("click", () => {
-                    if (container.lastChild.className === "todoDetails"){
-                        container.lastChild.remove();
-                    } else {const todoDetailContainer = document.createElement("div");
-                        todoDetailContainer.setAttribute("class", "todoDetails");
-                        container.appendChild(todoDetailContainer);
-                        for (const todoProperties in inbox[todoItem]){
-                            if (todoProperties != "title"){
-                                const property = document.createElement("p");
-                                const boldText = document.createElement("strong");
-                                boldText.textContent = `${todoProperties}: `;
-                                property.appendChild(boldText);
-                                property.appendChild(document.createTextNode(inbox[todoItem][todoProperties]));
-                                if (todoProperties === "Notes"){
-                                    property.setAttribute("class", todoProperties);
-                                };
-                                todoDetailContainer.appendChild(property);
-                            };
-                        }};
-                });
-            const line = document.createElement("hr");
-                content.appendChild(line);
-        };
+    for (let i=0; i<listOfProjects.length; i++){
+        for (const todoItem in inbox){
+            if (todoItem != "title" && inbox[todoItem].Date === dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
+                projectDisplay(todoItem, listOfProjects[i]);
+            };
+    };
 }});
 
 const somedayButton = document.querySelector("#someday");
 somedayButton.addEventListener("click", () => {
     content.replaceChildren();
     mainTitle.textContent = "Someday";
-    for (const todoItem in inbox){
-        if (todoItem != "title" && inbox[todoItem].Date > dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
-            const container = document.createElement("div");
-                container.setAttribute("class", "todoItemContainer");
-                content.appendChild(container);
-            const item = document.createElement("input");
-                item.setAttribute("type", "checkbox");
-                item.setAttribute("class", "checkbox");
-                container.appendChild(item);
-            const label = document.createElement("label");
-                label.setAttribute("class", "todoItem");
-                label.textContent = inbox[todoItem].title;
-                container.appendChild(label);
-                label.addEventListener("click", () => {
-                    if (container.lastChild.className === "todoDetails"){
-                        container.lastChild.remove();
-                    } else {const todoDetailContainer = document.createElement("div");
-                        todoDetailContainer.setAttribute("class", "todoDetails");
-                        container.appendChild(todoDetailContainer);
-                        for (const todoProperties in inbox[todoItem]){
-                            if (todoProperties != "title"){
-                                const property = document.createElement("p");
-                                const boldText = document.createElement("strong");
-                                boldText.textContent = `${todoProperties}: `;
-                                property.appendChild(boldText);
-                                property.appendChild(document.createTextNode(inbox[todoItem][todoProperties]));
-                                if (todoProperties === "Notes"){
-                                    property.setAttribute("class", todoProperties);
-                                };
-                                todoDetailContainer.appendChild(property);
-                            };
-                        }};
-                });
-            const line = document.createElement("hr");
-                content.appendChild(line);
+    for (let i=0; i<listOfProjects.length; i++){
+        for (const todoItem in inbox){
+            if (todoItem != "title" && inbox[todoItem].Date > dateFormatter(new Date(new Date().setDate(new Date().getDate() +1)))){
+                projectDisplay(todoItem, listOfProjects[i]);
+        };
     };
 }});
 
@@ -186,8 +100,12 @@ addProjectButton.addEventListener("click", ()=> {
             newProjectButton.addEventListener("click", () => {
                 content.replaceChildren();
                 mainTitle.textContent = newProjectName;
-                projectDisplay(newProjectObject);
-            });
+                for (const todoItem in newProjectObject){
+                    if (todoItem != "title" && newProjectObject[todoItem].title){
+                        projectDisplay(todoItem, newProjectObject);
+                    };                
+            };
+        });
             sidebar.appendChild(newProjectButton);
 
             modal.style.display = "none";
