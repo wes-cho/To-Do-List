@@ -87,6 +87,7 @@ function projectDisplay(project){
                             }};
                     });
                 const line = document.createElement("hr");
+                    line.setAttribute("class", "line");
                     content.appendChild(line);
             };
         };
