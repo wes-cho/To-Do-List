@@ -33,10 +33,16 @@ function projectDisplay(project){
                 const container = document.createElement("div");
                     container.setAttribute("class", "todoItemContainer");
                     content.appendChild(container);
-                const item = document.createElement("input");
-                    item.setAttribute("type", "checkbox");
-                    item.setAttribute("class", "checkbox");
-                    container.appendChild(item);
+                const checkbox = document.createElement("input");
+                    checkbox.setAttribute("type", "checkbox");
+                    checkbox.setAttribute("class", "checkbox");
+                    container.appendChild(checkbox);
+                    checkbox.addEventListener("click", () => {
+                        delete project[todoItem];
+                        container.remove();
+                        line.remove();
+                        console.log(project)
+                    });
                 const label = document.createElement("label");
                     label.setAttribute("class", "todoItem");
                     label.textContent = project[todoItem].title;
