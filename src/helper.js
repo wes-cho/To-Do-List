@@ -64,12 +64,12 @@ function projectDisplay(item, project){
                                 const newProject = prompt("What project would you like to move this item to?");
                                 if (listOfProjects.some(project => project.title === newProject)){
                                     // change the project value of the todo item
-                                    project[todoItem].Project = newProject;
+                                    project[item].Project = newProject;
                                     // add the todo item to the new project
                                     const newProjectObject = listOfProjects.find(project => project.title === newProject);
-                                    newProjectObject[todoItem] = project[todoItem];
+                                    newProjectObject[item] = project[item];
                                     // remove the todo item from the old project
-                                    delete project[todoItem];
+                                    delete project[item];
                                 } else {
                                     alert("Project does not exist");
                                 };
