@@ -155,6 +155,9 @@ hr{
 #project{
     margin-left: 20px;
 }
+#project-property:hover{
+    color: #767FF9;
+}
 #submit{
     margin-top: 20px;
     color: white;

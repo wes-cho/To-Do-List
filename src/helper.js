@@ -61,6 +61,7 @@ function projectDisplay(project){
                                     property.appendChild(boldText);
                                     property.appendChild(document.createTextNode(project[todoItem][todoProperties]));
                                     if (todoProperties === "Project"){
+                                        boldText.setAttribute("id", "project-property");
                                         property.addEventListener("click", () => {
                                             const newProject = prompt("What project would you like to move this item to?");
                                             if (listOfProjects.some(project => project.title === newProject)){
