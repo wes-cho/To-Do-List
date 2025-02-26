@@ -80,7 +80,7 @@ hr{
     grid-template-rows: 1fr 1fr;
     margin: 10px 0 0 55px;
 }
-.Notes{
+#Notes{
     grid-column: 1 / span 3;
     grid-row: 2;
 }
@@ -185,7 +185,7 @@ hr{
 #project{
     margin-left: 20px;
 }
-#project-property:hover{
+.propertyKey:hover{
     color: #767FF9;
 }
 #submit{
